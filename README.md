@@ -152,9 +152,14 @@ Examples were selected automatically from the 500 test outputs by transparent ru
 - **Numbers and negation:** Transformer and mT5 kept numbers in only 12% and 14% of relevant test sentences (LLaMA 89%, Gemma 97%). On the four negation probes the negation marker was kept by Gemma and LLaMA (4 of 4), the Transformer (3 of 4) and mT5 (1 of 4).
 - **Gender:** on 20 neutral occupation sentences Gemma chose the masculine verb form 17 times (feminine only for "nurse" in "arrived late") and LLaMA 16 times, while neither followed explicit male and female cues reliably (controls: Gemma matched the female cue 6 of 10, LLaMA the male cue 6 of 10). The detection is a word-list heuristic on a small probe set.
 - **Cultural errors:** Gemma translated "They offered prayers at the gurdwara." with the Islamic term नमाज़ (and the wrong tense); both idioms ("raining cats and dogs", "break a leg") were translated literally or weakened.
-- **Sensitive content:** the run log did not capture the printed outputs of the sensitive-content probes, so they are not graded here; the weaker systems often change numbers and negation, which could reverse the meaning of a dosage or a prohibition.
+- **Sensitive content (eight probes; outputs are excerpts cut at about 45 characters in the log, readings are mine, not a human evaluation):**
+  - *Dosage:* for "Take one tablet twice a day after meals." LLaMA dropped "twice a day"; mT5 produced "इसके बाद एक चीज़ न लें" (roughly "after this, do not take one thing"), inverting the instruction; Gemma kept quantity and frequency.
+  - *Insult:* LLaMA turned "You are a complete idiot." into "तुम एक पूर्ण बुद्धि के व्यक्ति हो" (roughly "you are a person of complete intelligence"), reversing the meaning; Gemma was faithful.
+  - *Medication warning:* Gemma kept the negation and alcohol; LLaMA rendered "patient" as "पीड़िता" (a female victim); mT5 and the Transformer lost the warning.
+  - *Emotional distress:* in the visible text no system rendered "feeling very low" correctly (Gemma "नीरस" = dull, LLaMA "कमजोर" = weak; the others garbled).
+  - *Arrest and police statements:* Gemma was faithful; LLaMA changed "he" to "they"; mT5 and the Transformer lost the arrest.
 
-**Risks not examined:** quality differences across dialects and social groups, softening or amplification of insults, and altered reporting of violent or political events.
+**Risks not examined:** quality differences across dialects and social groups, and the reporting of violent or political events beyond the few probe sentences.
 
 **Recommended mitigations:** human review for high-stakes text; automatic checks for numbers, dates, names and negation; glossaries for names and religious or cultural terms; script and length sanity checks (these would catch the Gemma and LLaMA failures above); uncertainty flags (quality estimation or back-translation); offering both gendered renderings when gender is unknown; targeted evaluation beyond BLEU and chrF; not silently censoring sensitive text; auditing noisy training pairs; and never treating machine output as authoritative.
 
@@ -166,7 +171,8 @@ Examples were selected automatically from the 500 test outputs by transparent ru
 - The temperature study used 24 sentences and one sample per setting.
 - Newswire test data versus mostly non-news training data lowers absolute scores; the pretrained models may have seen WMT-style text.
 - No human evaluation; the bias probes use heuristics and are small; BLEU and chrF are surface metrics.
-- The Gemma run was resumed from saved results in an earlier session, so its load time and exact validation NLL are not in the uploaded notebook output.
+- The Gemma run was resumed from saved results in an earlier session, so its load time and exact validation NLL are not in the notebook output.
+- The run log cut printed example and probe outputs at about 45 characters, and the original translation CSV files were not available, so failures such as Gemma's degenerate outputs could not be counted over all 500 sentences.
 
 ## Conclusion
 On the recorded evidence **Gemma (`gemma-3-1b-pt` with LoRA) is the best-performing system**: highest BLEU (15.80) and chrF (41.40), a statistically significant lead over the runner-up LLaMA (BLEU 10.32, chrF 34.34) on both metrics after Holm correction, and 97% number preservation. The Transformer trained from scratch (2.09 / 18.38) and the briefly fine-tuned mT5-small (0.68 / 12.31) follow. The quality came at a high cost (about 129 minutes of fine-tuning and about 0.63 s per sentence at batch size 4, against 9 minutes and 0.066 s for the Transformer), and even the best system showed serious failures in real outputs. These results support adapting pretrained decoder-only models with parameter-efficient fine-tuning when data and compute are limited, together with human review and targeted checks, and they do not support using any of these systems for high-stakes translation.
@@ -181,11 +187,12 @@ ICT4403-Machine-Translation-Assignment3/
 ├── ict4403_assignment3_machine_translation.ipynb   # executed notebook with outputs
 ├── assignment3_outputs/
 │   ├── README.md
-│   └── plots/                                      # figures from the executed run
+│   ├── plots/                                      # figures from the executed run
+│   └── notebook_extracted/                         # tables and text transcribed from the notebook output
 ├── docs/                                           # PLAN.md, IMPLEMENTATION_BLUEPRINT.md
 └── validation/LOCAL_VALIDATION.md                  # code validation on synthetic data
 ```
-After downloading the Kaggle ZIP, also copy `config/`, `results/`, `translations/`, `logs/`, `manifest.json` and `RESULTS.md` into `assignment3_outputs/` (not `checkpoints/`).
+The original Kaggle result files (translation and probe CSVs, `manifest.json`) were not available when this README was written. `assignment3_outputs/notebook_extracted/` holds **transcriptions** of the tables printed in the executed notebook plus its full saved text, not the original CSVs. If you still have the Kaggle `assignment3_outputs.zip`, add its `config/`, `results/`, `translations/` and `logs/` (not `checkpoints/`) to `assignment3_outputs/`.
 
 ## Licences and attribution
 - **Data:** IITB English-Hindi corpus, non-commercial research use only (see [Dataset](#dataset)); not redistributed here.
