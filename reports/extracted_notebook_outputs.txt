@@ -1,0 +1,984 @@
+EXTRACTED EXECUTION OUTPUTS FROM THE UPLOADED NOTEBOOK
+These are saved notebook cell outputs, not reconstructed model runs.
+
+==========================================================================================
+Dataset load / source counts (cell 9)
+==========================================================================================
+--- output 0 (stream) ---
+Contents of /kaggle/input:
+
+
+--- output 1 (display text) ---
+README.md:   0%|          | 0.00/3.14k [00:00<?, ?B/s]
+
+--- output 2 (display text) ---
+dataset_infos.json:   0%|          | 0.00/953 [00:00<?, ?B/s]
+
+--- output 3 (display text) ---
+data/train-00000-of-00001.parquet: reconstructing file:   0%|          |  0.00B /  190MB            
+
+--- output 4 (display text) ---
+data/train-00000-of-00001.parquet: downloading bytes:           |  0.00B            
+
+--- output 5 (display text) ---
+data/validation-00000-of-00001.parquet: reconstructing file:   0%|          |  0.00B / 85.7kB            
+
+--- output 6 (display text) ---
+data/validation-00000-of-00001.parquet: downloading bytes:           |  0.00B            
+
+--- output 7 (display text) ---
+data/test-00000-of-00001.parquet: reconstructing file:   0%|          |  0.00B /  500kB            
+
+--- output 8 (display text) ---
+data/test-00000-of-00001.parquet: downloading bytes:           |  0.00B            
+
+--- output 9 (display text) ---
+Generating train split:   0%|          | 0/1659083 [00:00<?, ? examples/s]
+
+--- output 10 (display text) ---
+Generating validation split:   0%|          | 0/520 [00:00<?, ? examples/s]
+
+--- output 11 (display text) ---
+Generating test split:   0%|          | 0/2507 [00:00<?, ? examples/s]
+
+--- output 12 (stream) ---
+{
+  "dataset": "iitb",
+  "name": "IIT Bombay English-Hindi Parallel Corpus",
+  "url": "https://huggingface.co/datasets/cfilt/iitb-english-hindi",
+  "original": "http://www.cfilt.iitb.ac.in/iitb_parallel",
+  "license": "CC BY-NC 4.0 (HF card); paper: CC BY-NC-SA 4.0 for new parts, upstream licences otherwise. Non-commercial research use only.",
+  "loaded_from": "huggingface:cfilt/iitb-english-hindi",
+  "raw_counts": {
+    "train": 1659083,
+    "valid": 520,
+    "test": 2507
+  },
+  "train_candidate_pool": 160000
+}
+
+
+==========================================================================================
+Raw data inspection (cell 10)
+==========================================================================================
+--- output 0 (stream) ---
+[train] {"rows": 160000, "null_en": 0, "null_hi": 0, "empty_en": 58, "empty_hi": 596, "duplicate_pairs": 6261, "duplicate_en": 17831, "en_words": {"mean": 13.02, "median": 9.0, "p95": 39.0, "max": 674}, "hi_words": {"mean": 14.01, "median": 9.0, "p95": 43.0, "max": 695}}
+[valid] {"rows": 520, "null_en": 0, "null_hi": 0, "empty_en": 0, "empty_hi": 0, "duplicate_pairs": 0, "duplicate_en": 0, "en_words": {"mean": 17.71, "median": 16.0, "p95": 34.0, "max": 62}, "hi_words": {"mean": 17.9, "median": 16.0, "p95": 34.0, "max": 59}}
+[test] {"rows": 2507, "null_en": 0, "null_hi": 0, "empty_en": 0, "empty_hi": 0, "duplicate_pairs": 1, "duplicate_en": 1, "en_words": {"mean": 19.7, "median": 18.0, "p95": 38.0, "max": 81}, "hi_words": {"mean": 22.75, "median": 20.0, "p95": 44.0, "max": 76}}
+
+--- 5 random raw rows from 'train' (inspect alignment and language direction: en = source, hi = target) ---
+            row                                                                                         en                                                                                         hi
+120476  1250227                                                                                   Naushara                                                                                    नौशहरा 
+32693    336664  The month of Ramadan in which was revealed the Qur 'an, a guidance for mankind, and cl...  (रोज़ों का) महीना रमज़ान है जिस में क़ुरान नाज़िल किया गया जो लोगों का रहनुमा है और उस...
+79958    831255                                                                                   annually                                                                                   अनुवत्सर
+76366    794563                                                                                   argument                                                                                  सवाल-जवाब
+82343    855451                                                                                    inspect                                                                                      देखना
+
+--- 5 random raw rows from 'valid' (inspect alignment and language direction: en = source, hi = target) ---
+     row                                                                                         en                                                                                        hi
+275  275  Patel belongs to everyone, he is loved by the whole of India, but Congress has made hi...  पटेल सबके हैं, समूचे भारत के प्रिय हैं, लेकिन कांग्रेस उन्हें सिर्फ अपनी संपदा मानती है।
+93    93                                       The chief of the PSS organises meetings arbitrarily.                                               प्रमुख पंसस की बैठक मनमाने ढंग से करते हैं।
+6      6                               Nagarsevak, Reeta Mule presented messages from well-wishers.                                                     नगरसेवक रीता मुले ने सदिच्छा भेंट दी।
+167  167  Her mother, Sunita Devi a.k.a. Soni, and her family live in Belatandh village in Giridih.                 गिरीडीह के बेलाटांड़ गांव में मां सुनीता देवी उर्फ सोनी व परिवार रहता है।
+90    90                                                        The attitude of buyers has changed.                                                         खरीदारों के रुख में बदलाव आया है।
+
+--- 5 random raw rows from 'test' (inspect alignment and language direction: en = source, hi = target) ---
+       row                                                                                         en                                                                                         hi
+2121  2121                  Due to financial constraints Dhirubhai had to drop out after high school.                     आर्थिक तंगी के कारण धीरूभाई को हाईस्कूल के बाद ही पढ़ाई छोड़ना पड़ गई।
+56      56  Or they can choose not to have a device at all, opting instead to pay a flat fee based...  या फिर से कोई भी डिवाइस न लेना चुन सकते हैं, बल्कि राज्य के निवासियों द्वारा तय किए जा...
+2479  2479  However, following the recent murder of Australian travel agent Michelle Smith in Phuk...  वैसे हाल ही में फुकेट में ऑस्ट्रेलियाई ट्रैवेल एजेन्ट माइकल स्मिथ की हत्या के पश्चात, ...
+1292  1292               Delta and JetBlue were among the airliners who have already submitted plans.   डेल्टा और जेटब्लू उन एयरलाइन्स में से हैं, जिन्होंने पहले ही योजनाएं प्रस्तुत कर दी हैं।
+1599  1599                                               It was simply nothing I could have imagined.                            सरल तौर कहें तो में इसमें से किसी भी कल्पना भी नहीं कर सकता था।
+
+
+==========================================================================================
+Dataset split statistics (cell 13)
+==========================================================================================
+--- output 1 (stream) ---
+{
+ "train": {
+  "n": 20000,
+  "en_mean": 15.75,
+  "en_median": 13.0,
+  "en_p95": 37.0,
+  "hi_mean": 16.97,
+  "hi_median": 14.0,
+  "hi_p95": 40.0
+ },
+ "valid": {
+  "n": 520,
+  "en_mean": 17.71,
+  "en_median": 16.0,
+  "en_p95": 34.0,
+  "hi_mean": 17.9,
+  "hi_median": 16.0,
+  "hi_p95": 34.0
+ },
+ "test": {
+  "n": 500,
+  "en_mean": 19.43,
+  "en_median": 17.5,
+  "en_p95": 38.0,
+  "hi_mean": 22.49,
+  "hi_median": 20.0,
+  "hi_p95": 44.0
+ }
+}
+
+
+==========================================================================================
+Basic Transformer run log (cell 23)
+==========================================================================================
+--- output 0 (stream) ---
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1793366636.542552      48 sentencepiece_trainer.cc:105] Starts training with : 
+trainer_spec {
+  input: /kaggle/working/assignment3_outputs/checkpoints/transformer/spm_train.txt
+  input_format: 
+  model_prefix: /kaggle/working/assignment3_outputs/checkpoints/transformer/spm
+  model_type: BPE
+  vocab_size: 8000
+  self_test_sample_size: 0
+  character_coverage: 0.9995
+  input_sentence_size: 0
+  shuffle_input_sentence: 1
+  seed_sentencepiece_size: 100000
+  shrinking_factor: 0.75
+  max_sentence_length: 4192
+  num_threads: 4
+  num_sub_iterations: 2
+  max_sentencepiece_length: 16
+  split_by_unicode_script: 1
+  split_by_number: 1
+  split_by_whitespace: 1
+  split_digits: 0
+  pretokenization_delimiter: 
+  treat_whitespace_as_suffix: 0
+  allow_whitespace_only_pieces: 0
+  required_chars: 
+  byte_fallback: 0
+  vocabulary_output_piece_score: 1
+  train_extremely_large_corpus: 0
+  seed_sentencepieces_file: 
+  hard_vocab_limit: 0
+  use_all_vocab: 0
+  unk_id: 1
+  bos_id: 2
+  eos_id: 3
+  pad_id: 0
+  unk_piece: <unk>
+  bos_piece: <s>
+  eos_piece: </s>
+  pad_piece: <pad>
+  unk_surface:  ⁇ 
+  enable_differential_privacy: 0
+  differential_privacy_noise_level: 0
+  differential_privacy_clipping_threshold: 0
+}
+normalizer_spec {
+  name: nmt_nfkc
+  add_dummy_prefix: 1
+  remove_extra_whitespaces: 1
+  escape_whitespaces: 1
+  normalization_rule_tsv: 
+}
+denormalizer_spec {}
+I0000 00:00:1793366636.543529      48 trainer_interface.cc:364] SentenceIterator is not specified. Using MultiFileSentenceIterator.
+I0000 00:00:1793366636.543589      48 trainer_interface.cc:193] Loading corpus: /kaggle/working/assignment3_outputs/checkpoints/transformer/spm_train.txt
+I0000 00:00:1793366636.554234      48 trainer_interface.cc:422] Loaded all 40000 sentences
+I0000 00:00:1793366636.554488      48 trainer_interface.cc:440] Adding meta_piece: <pad>
+I0000 00:00:1793366636.554501      48 trainer_interface.cc:440] Adding meta_piece: <unk>
+I0000 00:00:1793366636.554506      48 trainer_interface.cc:440] Adding meta_piece: <s>
+I0000 00:00:1793366636.554510      48 trainer_interface.cc:440] Adding meta_piece: </s>
+I0000 00:00:1793366636.554534      48 trainer_interface.cc:445] Normalizing sentences...
+I0000 00:00:1793366636.708539      48 trainer_interface.cc:555] all chars count=3579989
+I0000 00:00:1793366636.708599      48 trainer_interface.cc:566] Done: 99.9528% characters are covered.
+I0000 00:00:1793366636.708615      48 trainer_interface.cc:578] Alphabet size=150
+I0000 00:00:1793366636.708619      48 trainer_interface.cc:579] Final character coverage=0.999528
+I0000 00:00:1793366636.821374      48 trainer_interface.cc:609] Done! preprocessed 40000 sentences.
+I0000 00:00:1793366636.821417      48 trainer_interface.cc:615] Tokenizing input sentences with whitespace: 40000
+I0000 00:00:1793366636.929339      48 trainer_interface.cc:626] Done! 84507
+I0000 00:00:1793366637.056701      48 bpe_model_trainer.cc:321] Added: freq=14604 size=20 all=5295 active=5143 piece=at
+I0000 00:00:1793366637.066768      48 bpe_model_trainer.cc:321] Added: freq=10637 size=40 all=6357 active=6205 piece=ों
+I0000 00:00:1793366637.073527      48 bpe_model_trainer.cc:321] Added: freq=8138 size=60 all=7232 active=7080 piece=र्
+I0000 00:00:1793366637.080686      48 bpe_model_trainer.cc:321] Added: freq=6081 size=80 all=8387 active=8235 piece=▁से
+I0000 00:00:1793366637.085440      48 bpe_model_trainer.cc:321] Added: freq=4618 size=100 all=9183 active=9031 piece=ct
+I0000 00:00:1793366637.090664      48 bpe_model_trainer.cc:321] Added: freq=3614 size=120 all=10339 active=10187 piece=▁वि
+I0000 00:00:1793366637.094888      48 bpe_model_trainer.cc:321] Added: freq=3131 size=140 all=11348 active=11196 piece=्ष
+I0000 00:00:1793366637.098789      48 bpe_model_trainer.cc:321] Added: freq=2720 size=160 all=12490 active=12338 piece=▁ख
+I0000 00:00:1793366637.101730      48 bpe_model_trainer.cc:321] Added: freq=2401 size=180 all=13414 active=13262 piece=▁उन
+I0000 00:00:1793366637.104732      48 bpe_model_trainer.cc:321] Added: freq=2194 size=200 all=14275 active=14123 piece=िल
+I0000 00:00:1793366637.108430      48 bpe_model_trainer.cc:321] Added: freq=1925 size=220 all=15292 active=15140 piece=ess
+I0000 00:00:1793366637.112035      48 bpe_model_trainer.cc:321] Added: freq=1750 size=240 all=16493 active=16341 piece=नी
+I0000 00:00:1793366637.114668      48 bpe_model_trainer.cc:321] Added: freq=1628 size=260 all=17424 active=17272 piece=ers
+I0000 00:00:1793366637.117687      48 bpe_model_trainer.cc:321] Added: freq=1480 size=280 all=18614 active=18462 piece=est
+I0000 00:00:1793366637.120546      48 bpe_model_trainer.cc:321] Added: freq=1368 size=300 all=19599 active=19447 piece=and
+I0000 00:00:1793366637.122659      48 bpe_model_trainer.cc:321] Added: freq=1264 size=320 all=20414 active=20262 piece=मा
+I0000 00:00:1793366637.125530      48 bpe_model_trainer.cc:321] Added: freq=1156 size=340 all=21339 active=21187 piece=▁अपने
+I0000 00:00:1793366637.127849      48 bpe_model_trainer.cc:321] Added: freq=1093 size=360 all=22263 active=22111 piece=ie
+I0000 00:00:1793366637.129877      48 bpe_model_trainer.cc:321] Added: freq=1020 size=380 all=23014 active=22862 piece=वि
+I0000 00:00:1793366637.132562      48 bpe_model_trainer.cc:321] Added: freq=937 size=400 all=23872 active=23720 piece=ose
+I0000 00:00:1793366637.134743      48 bpe_model_trainer.cc:321] Added: freq=872 size=420 all=24751 active=24599 piece=मान
+I0000 00:00:1793366637.136650      48 bpe_model_trainer.cc:321] Added: freq=835 size=440 all=25597 active=25445 piece=ार्
+I0000 00:00:1793366637.138195      48 bpe_model_trainer.cc:321] Added: freq=801 size=460 all=26161 active=26009 piece=दि
+I0000 00:00:1793366637.140033      48 bpe_model_trainer.cc:321] Added: freq=771 size=480 all=27057 active=26905 piece=भी
+I0000 00:00:1793366637.141698      48 bpe_model_trainer.cc:321] Added: freq=726 size=500 all=27619 active=27467 piece=▁pe
+I0000 00:00:1793366637.143279      48 bpe_model_trainer.cc:321] Added: freq=695 size=520 all=28130 active=27978 piece=▁man
+I0000 00:00:1793366637.145009      48 bpe_model_trainer.cc:321] Added: freq=671 size=540 all=28752 active=28600 piece=त्त
+I0000 00:00:1793366637.146642      48 bpe_model_trainer.cc:321] Added: freq=633 size=560 all=29380 active=29228 piece=ult
+I0000 00:00:1793366637.148212      48 bpe_model_trainer.cc:321] Added: freq=613 size=580 all=30185 active=30033 piece=▁क्या
+I0000 00:00:1793366637.149586      48 bpe_model_trainer.cc:321] Added: freq=594 size=600 all=30778 active=30626 piece=क्र
+I0000 00:00:1793366637.151084      48 bpe_model_trainer.cc:321] Added: freq=570 size=620 all=31419 active=31267 piece=दी
+I0000 00:00:1793366637.152337      48 bpe_model_trainer.cc:321] Added: freq=552 size=640 all=31860 active=31708 piece=ये
+I0000 00:00:1793366637.153700      48 bpe_model_trainer.cc:321] Added: freq=538 size=660 all=32519 active=32367 piece=are
+I0000 00:00:1793366637.155446      48 bpe_model_trainer.cc:321] Added: freq=517 size=680 all=33295 active=33143 piece=ade
+I0000 00:00:1793366637.156771      48 bpe_model_trainer.cc:321] Added: freq=499 size=700 all=33965 active=33813 piece=▁its
+I0000 00:00:1793366637.158520      48 bpe_model_trainer.cc:321] Added: freq=476 size=720 all=34572 active=34420 piece=बर
+I0000 00:00:1793366637.159833      48 bpe_model_trainer.cc:321] Added: freq=462 size=740 all=35356 active=35204 piece=▁हि
+I0000 00:00:1793366637.160833      48 bpe_model_trainer.cc:321] Added: freq=447 size=760 all=35778 active=35626 piece=▁ख़ुदा
+I0000 00:00:1793366637.161886      48 bpe_model_trainer.cc:321] Added: freq=436 size=780 all=36333 active=36181 piece=▁जिन
+I0000 00:00:1793366637.162887      48 bpe_model_trainer.cc:321] Added: freq=421 size=800 all=36754 active=36602 piece=▁rel
+I0000 00:00:1793366637.164059      48 bpe_model_trainer.cc:321] Added: freq=407 size=820 all=37352 active=37200 piece=▁अंत
+I0000 00:00:1793366637.165068      48 bpe_model_trainer.cc:321] Added: freq=396 size=840 all=37808 active=37656 piece=ays
+I0000 00:00:1793366637.166334      48 bpe_model_trainer.cc:321] Added: freq=388 size=860 all=38520 active=38368 piece=form
+I0000 00:00:1793366637.167303      48 bpe_model_trainer.cc:321] Added: freq=375 size=880 all=38916 active=38764 piece=▁होने
+I0000 00:00:1793366637.168139      48 bpe_model_trainer.cc:321] Added: freq=363 size=900 all=39215 active=39063 piece=▁pre
+I0000 00:00:1793366637.168974      48 bpe_model_trainer.cc:321] Added: freq=355 size=920 all=39575 active=39423 piece=▁झ
+I0000 00:00:1793366637.169994      48 bpe_model_trainer.cc:321] Added: freq=344 size=940 all=40022 active=39870 piece=▁”
+I0000 00:00:1793366637.170848      48 bpe_model_trainer.cc:321] Added: freq=337 size=960 all=40445 active=40293 piece=त्व
+I0000 00:00:1793366637.171804      48 bpe_model_trainer.cc:321] Added: freq=330 size=980 all=40952 active=40800 piece=लय
+I0000 00:00:1793366637.173099      48 bpe_model_trainer.cc:321] Added: freq=320 size=1000 all=41536 active=41384 piece=▁बि
+I0000 00:00:1793366637.174246      48 bpe_model_trainer.cc:321] Added: freq=308 size=1020 all=42040 active=41888 piece=▁ऐसा
+I0000 00:00:1793366637.175309      48 bpe_model_trainer.cc:321] Added: freq=299 size=1040 all=42536 active=42384 piece=▁develop
+I0000 00:00:1793366637.176392      48 bpe_model_trainer.cc:321] Added: freq=292 size=1060 all=43037 active=42885 piece=▁दूस
+I0000 00:00:1793366637.177248      48 bpe_model_trainer.cc:321] Added: freq=287 size=1080 all=43529 active=43377 piece=▁बन
+I0000 00:00:1793366637.178174      48 bpe_model_trainer.cc:321] Added: freq=282 size=1100 all=43996 active=43844 piece=▁right
+I0000 00:00:1793366637.178965      48 bpe_model_trainer.cc:321] Added: freq=277 size=1120 all=44424 active=44272 piece=▁बारे
+I0000 00:00:1793366637.179641      48 bpe_model_trainer.cc:321] Added: freq=270 size=1140 all=44671 active=44519 piece=▁शिक्ष
+I0000 00:00:1793366637.180471      48 bpe_model_trainer.cc:321] Added: freq=266 size=1160 all=45080 active=44928 piece=हाय
+I0000 00:00:1793366637.181439      48 bpe_model_trainer.cc:321] Added: freq=259 size=1180 all=45497 active=45345 piece=तों
+I0000 00:00:1793366637.182533      48 bpe_model_trainer.cc:321] Added: freq=253 size=1200 all=46014 active=45862 piece=दर्श
+I0000 00:00:1793366637.183575      48 bpe_model_trainer.cc:321] Added: freq=247 size=1220 all=46568 active=46416 piece=▁अस
+I0000 00:00:1793366637.184279      48 bpe_model_trainer.cc:321] Added: freq=244 size=1240 all=46859 active=46707 piece=▁follow
+I0000 00:00:1793366637.185056      48 bpe_model_trainer.cc:321] Added: freq=239 size=1260 all=47275 active=47123 piece=तु
+I0000 00:00:1793366637.185875      48 bpe_model_trainer.cc:321] Added: freq=233 size=1280 all=47581 active=47429 piece=▁इसे
+I0000 00:00:1793366637.186548      48 bpe_model_trainer.cc:321] Added: freq=228 size=1300 all=47805 active=47653 piece=▁प्रभाव
+I0000 00:00:1793366637.187427      48 bpe_model_trainer.cc:321] Added: freq=223 size=1320 all=48170 active=48018 piece=als
+I0000 00:00:1793366637.188444      48 bpe_model_trainer.cc:321] Added: freq=220 size=1340 all=48719 active=48567 piece=self
+I0000 00:00:1793366637.189083      48 bpe_model_trainer.cc:321] Added: freq=217 size=1360 all=49011 active=48859 piece=lp
+I0000 00:00:1793366637.190139      48 bpe_model_trainer.cc:321] Added: freq=213 size=1380 all=49535 active=49383 piece=ature
+I0000 00:00:1793366637.190895      48 bpe_model_trainer.cc:321] Added: freq=208 size=1400 all=49841 active=49689 piece=▁att
+I0000 00:00:1793366637.191695      48 bpe_model_trainer.cc:321] Added: freq=204 size=1420 all=50095 active=49943 piece=▁जिसे
+I0000 00:00:1793366637.192458      48 bpe_model_trainer.cc:321] Added: freq=200 size=1440 all=50418 active=50266 piece=्यालय
+I0000 00:00:1793366637.193012      48 bpe_model_trainer.cc:321] Added: freq=197 size=1460 all=50595 active=50443 piece=▁प्रयोग
+I0000 00:00:1793366637.193694      48 bpe_model_trainer.cc:321] Added: freq=191 size=1480 all=50900 active=50748 piece=xt
+I0000 00:00:1793366637.194475      48 bpe_model_trainer.cc:321] Added: freq=188 size=1500 all=51181 active=51029 piece=▁वही
+I0000 00:00:1793366637.195032      48 bpe_model_trainer.cc:321] Added: freq=186 size=1520 all=51452 active=51300 piece=ution
+I0000 00:00:1793366637.195722      48 bpe_model_trainer.cc:321] Added: freq=183 size=1540 all=51800 active=51648 piece=▁महा
+I0000 00:00:1793366637.196316      48 bpe_model_trainer.cc:321] Added: freq=181 size=1560 all=52053 active=51901 piece=▁हाथ
+I0000 00:00:1793366637.196963      48 bpe_model_trainer.cc:321] Added: freq=179 size=1580 all=52331 active=52179 piece=▁inf
+I0000 00:00:1793366637.197579      48 bpe_model_trainer.cc:321] Added: freq=177 size=1600 all=52552 active=52400 piece=▁इसलिए
+I0000 00:00:1793366637.198352      48 bpe_model_trainer.cc:321] Added: freq=173 size=1620 all=52870 active=52718 piece=ंस
+I0000 00:00:1793366637.198995      48 bpe_model_trainer.cc:321] Added: freq=171 size=1640 all=53143 active=52991 piece=कृति
+I0000 00:00:1793366637.199610      48 bpe_model_trainer.cc:321] Added: freq=168 size=1660 all=53339 active=53187 piece=▁lar
+I0000 00:00:1793366637.200138      48 bpe_model_trainer.cc:321] Added: freq=166 size=1680 all=53526 active=53374 piece=▁मार्ग
+I0000 00:00:1793366637.200899      48 bpe_model_trainer.cc:321] Added: freq=162 size=1700 all=53795 active=53643 piece=▁unt
+I0000 00:00:1793366637.201585      48 bpe_model_trainer.cc:321] Added: freq=160 size=1720 all=54107 active=53955 piece=▁स्ट
+I0000 00:00:1793366637.202335      48 bpe_model_trainer.cc:321] Added: freq=158 size=1740 all=54418 active=54266 piece=▁Shri
+I0000 00:00:1793366637.202962      48 bpe_model_trainer.cc:321] Added: freq=156 size=1760 all=54661 active=54509 piece=▁min
+I0000 00:00:1793366637.203675      48 bpe_model_trainer.cc:321] Added: freq=155 size=1780 all=55012 active=54860 piece=▁उनमें
+I0000 00:00:1793366637.204495      48 bpe_model_trainer.cc:321] Added: freq=153 size=1800 all=55312 active=55160 piece=▁cap
+I0000 00:00:1793366637.205114      48 bpe_model_trainer.cc:321] Added: freq=151 size=1820 all=55556 active=55404 piece=ासन
+I0000 00:00:1793366637.205583      48 bpe_model_trainer.cc:321] Added: freq=150 size=1840 all=55717 active=55565 piece=▁आपको
+I0000 00:00:1793366637.206040      48 bpe_model_trainer.cc:321] Added: freq=148 size=1860 all=55859 active=55707 piece=▁पहुँ
+I0000 00:00:1793366637.206589      48 bpe_model_trainer.cc:321] Added: freq=146 size=1880 all=56074 active=55922 piece=▁beh
+I0000 00:00:1793366637.207092      48 bpe_model_trainer.cc:321] Added: freq=144 size=1900 all=56224 active=56072 piece=▁बड़े
+I0000 00:00:1793366637.207637      48 bpe_model_trainer.cc:321] Added: freq=142 size=1920 all=56403 active=56251 piece=▁believe
+I0000 00:00:1793366637.208281      48 bpe_model_trainer.cc:321] Added: freq=140 size=1940 all=56705 active=56553 piece=▁fac
+I0000 00:00:1793366637.208663      48 bpe_model_trainer.cc:321] Added: freq=139 size=1960 all=56875 active=56723 piece=▁भवन
+I0000 00:00:1793366637.209009      48 bpe_model_trainer.cc:321] Added: freq=137 size=1980 all=56965 active=56813 piece=mb
+I0000 00:00:1793366637.209492      48 bpe_model_trainer.cc:321] Added: freq=136 size=2000 all=57142 active=56990 piece=▁known
+I0000 00:00:1793366637.210357      48 bpe_model_trainer.cc:321] Added: freq=134 size=2020 all=57342 active=57190 piece=ेद
+I0000 00:00:1793366637.210880      48 bpe_model_trainer.cc:321] Added: freq=133 size=2040 all=57549 active=57397 piece=▁वास्तव
+I0000 00:00:1793366637.211474      48 bpe_model_trainer.cc:321] Added: freq=131 size=2060 all=57794 active=57642 piece=min
+I0000 00:00:1793366637.211924      48 bpe_model_trainer.cc:321] Added: freq=129 size=2080 all=57977 active=57825 piece=ON
+I0000 00:00:1793366637.212539      48 bpe_model_trainer.cc:321] Added: freq=129 size=2100 all=58366 active=58214 piece=▁मैंने
+I0000 00:00:1793366637.213013      48 bpe_model_trainer.cc:321] Added: freq=127 size=2120 all=58540 active=58388 piece=▁चार
+I0000 00:00:1793366637.213551      48 bpe_model_trainer.cc:321] Added: freq=126 size=2140 all=58844 active=58692 piece=▁स्तर
+I0000 00:00:1793366637.214058      48 bpe_model_trainer.cc:321] Added: freq=125 size=2160 all=59023 active=58871 piece=स्थित
+I0000 00:00:1793366637.214657      48 bpe_model_trainer.cc:321] Added: freq=123 size=2180 all=59233 active=59081 piece=▁Par
+I0000 00:00:1793366637.215229      48 bpe_model_trainer.cc:321] Added: freq=121 size=2200 all=59424 active=59272 piece=▁Comm
+I0000 00:00:1793366637.215712      48 bpe_model_trainer.cc:321] Added: freq=120 size=2220 all=59611 active=59459 piece=▁केंद्र
+I0000 00:00:1793366637.216209      48 bpe_model_trainer.cc:321] Added: freq=118 size=2240 all=59800 active=59648 piece=ize
+I0000 00:00:1793366637.216841      48 bpe_model_trainer.cc:321] Added: freq=117 size=2260 all=60106 active=59954 piece=▁vis
+I0000 00:00:1793366637.217360      48 bpe_model_trainer.cc:321] Added: freq=116 size=2280 all=60334 active=60182 piece=▁days
+I0000 00:00:1793366637.217771      48 bpe_model_trainer.cc:321] Added: freq=115 size=2300 all=60519 active=60367 piece=▁राम
+I0000 00:00:1793366637.218324      48 bpe_model_trainer.cc:321] Added: freq=114 size=2320 all=60754 active=60602 piece=▁समर्थ
+I0000 00:00:1793366637.218739      48 bpe_model_trainer.cc:321] Added: freq=113 size=2340 all=60920 active=60768 piece=▁विश्वास
+I0000 00:00:1793366637.219315      48 bpe_model_trainer.cc:321] Added: freq=112 size=2360 all=61193 active=61041 piece=▁सुधार
+I0000 00:00:1793366637.219870      48 bpe_model_trainer.cc:321] Added: freq=110 size=2380 all=61454 active=61302 piece=ctor
+I0000 00:00:1793366637.220390      48 bpe_model_trainer.cc:321] Added: freq=109 size=2400 all=61656 active=61504 piece=▁Del
+I0000 00:00:1793366637.220777      48 bpe_model_trainer.cc:321] Added: freq=108 size=2420 all=61789 active=61637 piece=ाला
+I0000 00:00:1793366637.221437      48 bpe_model_trainer.cc:321] Added: freq=107 size=2440 all=62125 active=61973 piece=▁den
+I0000 00:00:1793366637.221867      48 bpe_model_trainer.cc:321] Added: freq=106 size=2460 all=62302 active=62150 piece=तियों
+I0000 00:00:1793366637.222319      48 bpe_model_trainer.cc:321] Added: freq=105 size=2480 all=62457 active=62305 piece=▁उत्पादन
+I0000 00:00:1793366637.222721      48 bpe_model_trainer.cc:321] Added: freq=104 size=2500 all=62608 active=62456 piece=▁जिसका
+I0000 00:00:1793366637.223129      48 bpe_model_trainer.cc:321] Added: freq=103 size=2520 all=62739 active=62587 piece=▁Rasht
+I0000 00:00:1793366637.223559      48 bpe_model_trainer.cc:321] Added: freq=102 size=2540 all=62873 active=62721 piece=▁large
+I0000 00:00:1793366637.224134      48 bpe_model_trainer.cc:321] Added: freq=101 size=2560 all=63086 active=62934 piece=▁वहाँ
+I0000 00:00:1793366637.224648      48 bpe_model_trainer.cc:321] Added: freq=100 size=2580 all=63322 active=63170 piece=▁लौ
+I0000 00:00:1793366637.225079      48 bpe_model_trainer.cc:321] Added: freq=99 size=2600 all=63472 active=63320 piece=ूरत
+I0000 00:00:1793366637.225489      48 bpe_model_trainer.cc:321] Added: freq=98 size=2620 all=63633 active=63481 piece=?"
+I0000 00:00:1793366637.226026      48 bpe_model_trainer.cc:321] Added: freq=97 size=2640 all=63824 active=63672 piece=बन्
+I0000 00:00:1793366637.226362      48 bpe_model_trainer.cc:321] Added: freq=97 size=2660 all=63961 active=63809 piece=▁विश्वविद्यालय
+I0000 00:00:1793366637.226856      48 bpe_model_trainer.cc:321] Added: freq=95 size=2680 all=64139 active=63987 piece=ode
+I0000 00:00:1793366637.227300      48 bpe_model_trainer.cc:321] Added: freq=94 size=2700 all=64321 active=64169 piece=इस
+I0000 00:00:1793366637.227759      48 bpe_model_trainer.cc:321] Added: freq=94 size=2720 all=64495 active=64343 piece=▁except
+I0000 00:00:1793366637.228347      48 bpe_model_trainer.cc:321] Added: freq=93 size=2740 all=64743 active=64591 piece=▁plac
+I0000 00:00:1793366637.228784      48 bpe_model_trainer.cc:321] Added: freq=92 size=2760 all=64858 active=64706 piece=▁sche
+I0000 00:00:1793366637.229324      48 bpe_model_trainer.cc:321] Added: freq=91 size=2780 all=65061 active=64909 piece=िष्ट
+I0000 00:00:1793366637.229759      48 bpe_model_trainer.cc:321] Added: freq=90 size=2800 all=65255 active=65103 piece=पुर
+I0000 00:00:1793366637.230253      48 bpe_model_trainer.cc:321] Added: freq=90 size=2820 all=65457 active=65305 piece=▁मुद्र
+I0000 00:00:1793366637.231008      48 bpe_model_trainer.cc:321] Added: freq=89 size=2840 all=65694 active=65542 piece=▁less
+I0000 00:00:1793366637.231488      48 bpe_model_trainer.cc:321] Added: freq=88 size=2860 all=65907 active=65755 piece=▁met
+I0000 00:00:1793366637.231753      48 bpe_model_trainer.cc:321] Added: freq=88 size=2880 all=65965 active=65813 piece=▁आवश्यकता
+I0000 00:00:1793366637.232392      48 bpe_model_trainer.cc:321] Added: freq=87 size=2900 all=66278 active=66126 piece=▁कवि
+I0000 00:00:1793366637.232561      48 bpe_model_trainer.cc:321] Added: freq=87 size=2920 all=66288 active=66136 piece=▁respons
+I0000 00:00:1793366637.233000      48 bpe_model_trainer.cc:321] Added: freq=86 size=2940 all=66482 active=66330 piece=▁still
+I0000 00:00:1793366637.233460      48 bpe_model_trainer.cc:321] Added: freq=85 size=2960 all=66617 active=66465 piece=▁achie
+I0000 00:00:1793366637.233904      48 bpe_model_trainer.cc:321] Added: freq=84 size=2980 all=66742 active=66590 piece=oura
+I0000 00:00:1793366637.234361      48 bpe_model_trainer.cc:321] Added: freq=83 size=3000 all=66833 active=66681 piece=put
+I0000 00:00:1793366637.234840      48 bpe_model_trainer.cc:321] Added: freq=83 size=3020 all=67047 active=66895 piece=▁plan
+I0000 00:00:1793366637.235388      48 bpe_model_trainer.cc:321] Added: freq=82 size=3040 all=67221 active=67069 piece=ग्री
+I0000 00:00:1793366637.235887      48 bpe_model_trainer.cc:321] Added: freq=81 size=3060 all=67443 active=67291 piece=ुआ
+I0000 00:00:1793366637.236370      48 bpe_model_trainer.cc:321] Added: freq=81 size=3080 all=67620 active=67468 piece=▁जन्म
+I0000 00:00:1793366637.236778      48 bpe_model_trainer.cc:321] Added: freq=80 size=3100 all=67746 active=67594 piece=osed
+I0000 00:00:1793366637.237115      48 bpe_model_trainer.cc:321] Added: freq=80 size=3120 all=67874 active=67722 piece=▁thing
+I0000 00:00:1793366637.237635      48 bpe_model_trainer.cc:321] Added: freq=79 size=3140 all=68057 active=67905 piece=्राम
+I0000 00:00:1793366637.237939      48 bpe_model_trainer.cc:321] Added: freq=79 size=3160 all=68136 active=67984 piece=▁though
+I0000 00:00:1793366637.238517      48 bpe_model_trainer.cc:321] Added: freq=78 size=3180 all=68335 active=68183 piece=▁अवधि
+I0000 00:00:1793366637.238978      48 bpe_model_trainer.cc:321] Added: freq=77 size=3200 all=68518 active=68366 piece=क्ता
+I0000 00:00:1793366637.239285      48 bpe_model_trainer.cc:321] Added: freq=77 size=3220 all=68588 active=68436 piece=▁message
+I0000 00:00:1793366637.239863      48 bpe_model_trainer.cc:321] Added: freq=76 size=3240 all=68758 active=68606 piece=▁mult
+I0000 00:00:1793366637.240312      48 bpe_model_trainer.cc:321] Added: freq=75 size=3260 all=68872 active=68720 piece=The
+I0000 00:00:1793366637.240745      48 bpe_model_trainer.cc:321] Added: freq=75 size=3280 all=68986 active=68834 piece=▁instru
+I0000 00:00:1793366637.241325      48 bpe_model_trainer.cc:321] Added: freq=74 size=3300 all=69192 active=69040 piece=ारोह
+I0000 00:00:1793366637.241600      48 bpe_model_trainer.cc:321] Added: freq=74 size=3320 all=69260 active=69108 piece=▁problems
+I0000 00:00:1793366637.242157      48 bpe_model_trainer.cc:321] Added: freq=73 size=3340 all=69491 active=69339 piece=▁ever
+I0000 00:00:1793366637.242415      48 bpe_model_trainer.cc:321] Added: freq=73 size=3360 all=69543 active=69391 piece=ification
+I0000 00:00:1793366637.243060      48 bpe_model_trainer.cc:321] Added: freq=72 size=3380 all=69776 active=69624 piece=▁mor
+I0000 00:00:1793366637.243357      48 bpe_model_trainer.cc:321] Added: freq=72 size=3400 all=69852 active=69700 piece=▁contact
+I0000 00:00:1793366637.244060      48 bpe_model_trainer.cc:321] Added: freq=71 size=3420 all=70072 active=69920 piece=र्जी
+I0000 00:00:1793366637.244450      48 bpe_model_trainer.cc:321] Added: freq=71 size=3440 all=70201 active=70049 piece=▁पहुँचा
+I0000 00:00:1793366637.245013      48 bpe_model_trainer.cc:321] Added: freq=70 size=3460 all=70456 active=70304 piece=ेंस
+I0000 00:00:1793366637.245442      48 bpe_model_trainer.cc:321] Added: freq=70 size=3480 all=70600 active=70448 piece=▁सुना
+I0000 00:00:1793366637.245882      48 bpe_model_trainer.cc:321] Added: freq=69 size=3500 all=70711 active=70559 piece=यां
+I0000 00:00:1793366637.246331      48 bpe_model_trainer.cc:321] Added: freq=69 size=3520 all=70859 active=70707 piece=▁side
+I0000 00:00:1793366637.246652      48 bpe_model_trainer.cc:321] Added: freq=68 size=3540 all=70991 active=70839 piece=ंथ
+I0000 00:00:1793366637.247340      48 bpe_model_trainer.cc:321] Added: freq=68 size=3560 all=71325 active=71173 piece=त्साह
+I0000 00:00:1793366637.247659      48 bpe_model_trainer.cc:321] Added: freq=67 size=3580 all=71417 active=71265 piece=ैल
+I0000 00:00:1793366637.248235      48 bpe_model_trainer.cc:321] Added: freq=67 size=3600 all=71533 active=71381 piece=▁खाते
+I0000 00:00:1793366637.248432      48 bpe_model_trainer.cc:321] Added: freq=67 size=3620 all=71560 active=71408 piece=▁विस्तार
+I0000 00:00:1793366637.248965      48 bpe_model_trainer.cc:321] Added: freq=66 size=3640 all=71769 active=71617 piece=▁war
+I0000 00:00:1793366637.249247      48 bpe_model_trainer.cc:321] Added: freq=66 size=3660 all=71813 active=71661 piece=▁administ
+I0000 00:00:1793366637.249798      48 bpe_model_trainer.cc:321] Added: freq=65 size=3680 all=72029 active=71877 piece=▁Hindu
+I0000 00:00:1793366637.250301      48 bpe_model_trainer.cc:321] Added: freq=64 size=3700 all=72228 active=72076 piece=लेख
+I0000 00:00:1793366637.250649      48 bpe_model_trainer.cc:321] Added: freq=64 size=3720 all=72337 active=72185 piece=▁suff
+I0000 00:00:1793366637.250882      48 bpe_model_trainer.cc:321] Added: freq=63 size=3740 all=72398 active=72246 piece=af
+I0000 00:00:1793366637.251452      48 bpe_model_trainer.cc:321] Added: freq=63 size=3760 all=72630 active=72478 piece=▁मिश
+I0000 00:00:1793366637.251735      48 bpe_model_trainer.cc:321] Added: freq=63 size=3780 all=72711 active=72559 piece=ibility
+I0000 00:00:1793366637.252158      48 bpe_model_trainer.cc:321] Added: freq=62 size=3800 all=72857 active=72705 piece=ुओं
+I0000 00:00:1793366637.252548      48 bpe_model_trainer.cc:321] Added: freq=62 size=3820 all=73005 active=72853 piece=▁court
+I0000 00:00:1793366637.252767      48 bpe_model_trainer.cc:321] Added: freq=61 size=3840 all=73033 active=72881 piece=एल
+I0000 00:00:1793366637.253342      48 bpe_model_trainer.cc:321] Added: freq=61 size=3860 all=73241 active=73089 piece=▁talk
+I0000 00:00:1793366637.253577      48 bpe_model_trainer.cc:321] Added: freq=60 size=3880 all=73270 active=73118 piece=br
+I0000 00:00:1793366637.254163      48 bpe_model_trainer.cc:321] Added: freq=60 size=3900 all=73585 active=73433 piece=ills
+I0000 00:00:1793366637.254580      48 bpe_model_trainer.cc:321] Added: freq=60 size=3920 all=73725 active=73573 piece=▁stat
+I0000 00:00:1793366637.254835      48 bpe_model_trainer.cc:321] Added: freq=60 size=3940 all=73763 active=73611 piece=▁discuss
+I0000 00:00:1793366637.255313      48 bpe_model_trainer.cc:321] Added: freq=59 size=3960 all=73900 active=73748 piece=▁अफ
+I0000 00:00:1793366637.255727      48 bpe_model_trainer.cc:321] Added: freq=59 size=3980 all=74039 active=73887 piece=▁पहली
+I0000 00:00:1793366637.256087      48 bpe_model_trainer.cc:321] Added: freq=58 size=4000 all=74111 active=73959 piece=ony
+I0000 00:00:1793366637.256594      48 bpe_model_trainer.cc:321] Added: freq=58 size=4020 all=74319 active=74167 piece=▁कमा
+I0000 00:00:1793366637.256915      48 bpe_model_trainer.cc:321] Added: freq=58 size=4040 all=74423 active=74271 piece=▁since
+I0000 00:00:1793366637.257109      48 bpe_model_trainer.cc:321] Added: freq=58 size=4060 all=74444 active=74292 piece=▁Parliament
+I0000 00:00:1793366637.257662      48 bpe_model_trainer.cc:321] Added: freq=57 size=4080 all=74677 active=74525 piece=▁लाल
+I0000 00:00:1793366637.258026      48 bpe_model_trainer.cc:321] Added: freq=57 size=4100 all=74766 active=74614 piece=▁course
+I0000 00:00:1793366637.258589      48 bpe_model_trainer.cc:321] Added: freq=56 size=4120 all=74910 active=74758 piece=र्ण
+I0000 00:00:1793366637.259016      48 bpe_model_trainer.cc:321] Added: freq=56 size=4140 all=75057 active=74905 piece=▁join
+I0000 00:00:1793366637.259288      48 bpe_model_trainer.cc:321] Added: freq=56 size=4160 all=75116 active=74964 piece=▁मुसलमान
+I0000 00:00:1793366637.259796      48 bpe_model_trainer.cc:321] Added: freq=55 size=4180 all=75275 active=75123 piece=pose
+I0000 00:00:1793366637.260097      48 bpe_model_trainer.cc:321] Added: freq=55 size=4200 all=75351 active=75199 piece=▁wish
+I0000 00:00:1793366637.260316      48 bpe_model_trainer.cc:321] Added: freq=55 size=4220 all=75370 active=75218 piece=▁मृत्यु
+I0000 00:00:1793366637.260816      48 bpe_model_trainer.cc:321] Added: freq=54 size=4240 all=75580 active=75428 piece=▁sal
+I0000 00:00:1793366637.261105      48 bpe_model_trainer.cc:321] Added: freq=54 size=4260 all=75659 active=75507 piece=mission
+I0000 00:00:1793366637.261494      48 bpe_model_trainer.cc:321] Added: freq=53 size=4280 all=75744 active=75592 piece=ott
+I0000 00:00:1793366637.261943      48 bpe_model_trainer.cc:321] Added: freq=53 size=4300 all=75919 active=75767 piece=▁रखे
+I0000 00:00:1793366637.262299      48 bpe_model_trainer.cc:321] Added: freq=53 size=4320 all=76001 active=75849 piece=▁until
+I0000 00:00:1793366637.262475      48 bpe_model_trainer.cc:321] Added: freq=52 size=4340 all=76010 active=75858 piece=एक
+I0000 00:00:1793366637.263010      48 bpe_model_trainer.cc:321] Added: freq=52 size=4360 all=76252 active=76100 piece=imum
+I0000 00:00:1793366637.263346      48 bpe_model_trainer.cc:321] Added: freq=52 size=4380 all=76325 active=76173 piece=▁पालन
+I0000 00:00:1793366637.263561      48 bpe_model_trainer.cc:321] Added: freq=52 size=4400 all=76367 active=76215 piece=▁उन्हीं
+I0000 00:00:1793366637.263943      48 bpe_model_trainer.cc:321] Added: freq=51 size=4420 all=76511 active=76359 piece=jee
+I0000 00:00:1793366637.264418      48 bpe_model_trainer.cc:321] Added: freq=51 size=4440 all=76619 active=76467 piece=▁Cont
+I0000 00:00:1793366637.264625      48 bpe_model_trainer.cc:321] Added: freq=51 size=4460 all=76643 active=76491 piece=▁यद्यपि
+I0000 00:00:1793366637.265094      48 bpe_model_trainer.cc:321] Added: freq=50 size=4480 all=76797 active=76645 piece=ांश
+I0000 00:00:1793366637.265595      48 bpe_model_trainer.cc:321] Added: freq=50 size=4500 all=76935 active=76783 piece=▁इनके
+I0000 00:00:1793366637.265818      48 bpe_model_trainer.cc:321] Added: freq=50 size=4520 all=76968 active=76816 piece=▁months
+I0000 00:00:1793366637.266119      48 bpe_model_trainer.cc:321] Added: freq=49 size=4540 all=77049 active=76897 piece=ैव
+I0000 00:00:1793366637.266642      48 bpe_model_trainer.cc:321] Added: freq=49 size=4560 all=77184 active=77032 piece=▁fut
+I0000 00:00:1793366637.266975      48 bpe_model_trainer.cc:321] Added: freq=49 size=4580 all=77291 active=77139 piece=▁wife
+I0000 00:00:1793366637.267212      48 bpe_model_trainer.cc:321] Added: freq=49 size=4600 all=77322 active=77170 piece=▁forward
+I0000 00:00:1793366637.267630      48 bpe_model_trainer.cc:321] Added: freq=48 size=4620 all=77413 active=77261 piece=पात
+I0000 00:00:1793366637.268087      48 bpe_model_trainer.cc:321] Added: freq=48 size=4640 all=77561 active=77409 piece=▁Jud
+I0000 00:00:1793366637.268378      48 bpe_model_trainer.cc:321] Added: freq=48 size=4660 all=77593 active=77441 piece=▁बयान
+I0000 00:00:1793366637.268678      48 bpe_model_trainer.cc:321] Added: freq=48 size=4680 all=77646 active=77494 piece=▁wealth
+I0000 00:00:1793366637.269231      48 bpe_model_trainer.cc:321] Added: freq=47 size=4700 all=77779 active=77627 piece=ियर
+I0000 00:00:1793366637.269658      48 bpe_model_trainer.cc:321] Added: freq=47 size=4720 all=77955 active=77803 piece=▁sum
+I0000 00:00:1793366637.269927      48 bpe_model_trainer.cc:321] Added: freq=47 size=4740 all=78000 active=77848 piece=▁बनाई
+I0000 00:00:1793366637.270105      48 bpe_model_trainer.cc:321] Added: freq=47 size=4760 all=78010 active=77858 piece=▁नाज़िल
+I0000 00:00:1793366637.270290      48 bpe_model_trainer.cc:321] Added: freq=47 size=4780 all=78015 active=77863 piece=▁Institute
+I0000 00:00:1793366637.270812      48 bpe_model_trainer.cc:321] Added: freq=46 size=4800 all=78199 active=78047 piece=▁“%
+I0000 00:00:1793366637.271237      48 bpe_model_trainer.cc:321] Added: freq=46 size=4820 all=78335 active=78183 piece=▁गैर
+I0000 00:00:1793366637.271522      48 bpe_model_trainer.cc:321] Added: freq=46 size=4840 all=78396 active=78244 piece=▁भागी
+I0000 00:00:1793366637.271716      48 bpe_model_trainer.cc:321] Added: freq=46 size=4860 all=78430 active=78278 piece=▁immedi
+I0000 00:00:1793366637.272131      48 bpe_model_trainer.cc:321] Added: freq=45 size=4880 all=78596 active=78444 piece=र्ग
+I0000 00:00:1793366637.272575      48 bpe_model_trainer.cc:321] Added: freq=45 size=4900 all=78773 active=78621 piece=▁प्ल
+I0000 00:00:1793366637.272825      48 bpe_model_trainer.cc:321] Added: freq=45 size=4920 all=78807 active=78655 piece=▁शायद
+I0000 00:00:1793366637.273048      48 bpe_model_trainer.cc:321] Added: freq=45 size=4940 all=78836 active=78684 piece=▁outside
+I0000 00:00:1793366637.273571      48 bpe_model_trainer.cc:321] Added: freq=44 size=4960 all=79041 active=78889 piece=▁(%
+I0000 00:00:1793366637.273969      48 bpe_model_trainer.cc:321] Added: freq=44 size=4980 all=79186 active=79034 piece=itive
+I0000 00:00:1793366637.274348      48 bpe_model_trainer.cc:321] Added: freq=44 size=5000 all=79282 active=79130 piece=▁सहेज
+I0000 00:00:1793366637.274633      48 bpe_model_trainer.cc:321] Added: freq=44 size=5020 all=79342 active=79190 piece=▁undert
+I0000 00:00:1793366637.274822      48 bpe_model_trainer.cc:321] Added: freq=43 size=5040 all=79356 active=79204 piece=7.
+I0000 00:00:1793366637.275425      48 bpe_model_trainer.cc:321] Added: freq=43 size=5060 all=79663 active=79511 piece=ाये
+I0000 00:00:1793366637.275845      48 bpe_model_trainer.cc:321] Added: freq=43 size=5080 all=79774 active=79622 piece=▁ones
+I0000 00:00:1793366637.276062      48 bpe_model_trainer.cc:321] Added: freq=43 size=5100 all=79802 active=79650 piece=▁placed
+I0000 00:00:1793366637.276263      48 bpe_model_trainer.cc:321] Added: freq=43 size=5120 all=79814 active=79662 piece=▁management
+I0000 00:00:1793366637.276843      48 bpe_model_trainer.cc:321] Added: freq=42 size=5140 all=80070 active=79918 piece=▁कथ
+I0000 00:00:1793366637.277267      48 bpe_model_trainer.cc:321] Added: freq=42 size=5160 all=80222 active=80070 piece=▁दुख
+I0000 00:00:1793366637.277477      48 bpe_model_trainer.cc:321] Added: freq=42 size=5180 all=80268 active=80116 piece=▁पद्ध
+I0000 00:00:1793366637.277705      48 bpe_model_trainer.cc:321] Added: freq=42 size=5200 all=80312 active=80160 piece=▁really
+I0000 00:00:1793366637.277940      48 bpe_model_trainer.cc:321] Added: freq=41 size=5220 all=80340 active=80188 piece=tt
+I0000 00:00:1793366637.278535      48 bpe_model_trainer.cc:321] Added: freq=41 size=5240 all=80552 active=80400 piece=▁Sat
+I0000 00:00:1793366637.278819      48 bpe_model_trainer.cc:321] Added: freq=41 size=5260 all=80626 active=80474 piece=▁वाक़
+I0000 00:00:1793366637.278996      48 bpe_model_trainer.cc:321] Added: freq=41 size=5280 all=80644 active=80492 piece=▁अप्रैल
+I0000 00:00:1793366637.279143      48 bpe_model_trainer.cc:321] Added: freq=41 size=5300 all=80645 active=80493 piece=▁व्यक्तियों
+I0000 00:00:1793366637.279659      48 bpe_model_trainer.cc:321] Added: freq=40 size=5320 all=80877 active=80725 piece=▁कब
+I0000 00:00:1793366637.280065      48 bpe_model_trainer.cc:321] Added: freq=40 size=5340 all=81048 active=80896 piece=▁कहो
+I0000 00:00:1793366637.280347      48 bpe_model_trainer.cc:321] Added: freq=40 size=5360 all=81142 active=80990 piece=▁fulf
+I0000 00:00:1793366637.280569      48 bpe_model_trainer.cc:321] Added: freq=40 size=5380 all=81179 active=81027 piece=▁manif
+I0000 00:00:1793366637.280789      48 bpe_model_trainer.cc:321] Added: freq=40 size=5400 all=81204 active=81052 piece=▁purposes
+I0000 00:00:1793366637.281411      48 bpe_model_trainer.cc:321] Added: freq=39 size=5420 all=81403 active=81251 piece=icro
+I0000 00:00:1793366637.281805      48 bpe_model_trainer.cc:321] Added: freq=39 size=5440 all=81520 active=81368 piece=▁Shah
+I0000 00:00:1793366637.282005      48 bpe_model_trainer.cc:321] Added: freq=39 size=5460 all=81547 active=81395 piece=iction
+I0000 00:00:1793366637.282213      48 bpe_model_trainer.cc:321] Added: freq=39 size=5480 all=81568 active=81416 piece=▁temple
+I0000 00:00:1793366637.282350      48 bpe_model_trainer.cc:321] Added: freq=39 size=5500 all=81586 active=81434 piece=▁previous
+I0000 00:00:1793366637.282816      48 bpe_model_trainer.cc:321] Added: freq=38 size=5520 all=81813 active=81661 piece=oke
+I0000 00:00:1793366637.283316      48 bpe_model_trainer.cc:321] Added: freq=38 size=5540 all=82014 active=81862 piece=ored
+I0000 00:00:1793366637.283665      48 bpe_model_trainer.cc:321] Added: freq=38 size=5560 all=82146 active=81994 piece=umbai
+I0000 00:00:1793366637.283935      48 bpe_model_trainer.cc:321] Added: freq=38 size=5580 all=82209 active=82057 piece=▁जिनका
+I0000 00:00:1793366637.284098      48 bpe_model_trainer.cc:321] Added: freq=38 size=5600 all=82235 active=82083 piece=▁decided
+I0000 00:00:1793366637.284371      48 bpe_model_trainer.cc:321] Added: freq=37 size=5620 all=82285 active=82133 piece=su
+I0000 00:00:1793366637.284876      48 bpe_model_trainer.cc:321] Added: freq=37 size=5640 all=82480 active=82328 piece=ique
+I0000 00:00:1793366637.285340      48 bpe_model_trainer.cc:321] Added: freq=37 size=5660 all=82622 active=82470 piece=वर्ती
+I0000 00:00:1793366637.285603      48 bpe_model_trainer.cc:321] Added: freq=37 size=5680 all=82704 active=82552 piece=itable
+I0000 00:00:1793366637.285796      48 bpe_model_trainer.cc:321] Added: freq=37 size=5700 all=82739 active=82587 piece=ovember
+I0000 00:00:1793366637.285941      48 bpe_model_trainer.cc:321] Added: freq=37 size=5720 all=82744 active=82592 piece=▁वातावरण
+I0000 00:00:1793366637.286237      48 bpe_model_trainer.cc:321] Added: freq=36 size=5740 all=82820 active=82668 piece=कन
+I0000 00:00:1793366637.286754      48 bpe_model_trainer.cc:321] Added: freq=36 size=5760 all=83037 active=82885 piece=▁नर
+I0000 00:00:1793366637.287211      48 bpe_model_trainer.cc:321] Added: freq=36 size=5780 all=83174 active=83022 piece=▁जोर
+I0000 00:00:1793366637.287482      48 bpe_model_trainer.cc:321] Added: freq=36 size=5800 all=83240 active=83088 piece=▁subs
+I0000 00:00:1793366637.287698      48 bpe_model_trainer.cc:321] Added: freq=36 size=5820 all=83286 active=83134 piece=▁style
+I0000 00:00:1793366637.287826      48 bpe_model_trainer.cc:321] Added: freq=36 size=5840 all=83296 active=83144 piece=▁संलग्न
+I0000 00:00:1793366637.287965      48 bpe_model_trainer.cc:321] Added: freq=36 size=5860 all=83309 active=83157 piece=▁प्रत्यक्ष
+I0000 00:00:1793366637.288469      48 bpe_model_trainer.cc:321] Added: freq=35 size=5880 all=83485 active=83333 piece=चीत
+I0000 00:00:1793366637.288880      48 bpe_model_trainer.cc:321] Added: freq=35 size=5900 all=83617 active=83465 piece=बारा
+I0000 00:00:1793366637.289205      48 bpe_model_trainer.cc:321] Added: freq=35 size=5920 all=83697 active=83545 piece=णिज्य
+I0000 00:00:1793366637.289431      48 bpe_model_trainer.cc:321] Added: freq=35 size=5940 all=83752 active=83600 piece=rences
+I0000 00:00:1793366637.289613      48 bpe_model_trainer.cc:321] Added: freq=35 size=5960 all=83775 active=83623 piece=▁पत्नी
+I0000 00:00:1793366637.289806      48 bpe_model_trainer.cc:321] Added: freq=35 size=5980 all=83793 active=83641 piece=▁परीक्षण
+I0000 00:00:1793366637.290048      48 bpe_model_trainer.cc:321] Added: freq=34 size=6000 all=83833 active=83681 piece=gs
+I0000 00:00:1793366637.290559      48 bpe_model_trainer.cc:321] Added: freq=34 size=6020 all=84052 active=83900 piece=▁तथ
+I0000 00:00:1793366637.290934      48 bpe_model_trainer.cc:321] Added: freq=34 size=6040 all=84176 active=84024 piece=▁फैस
+I0000 00:00:1793366637.291320      48 bpe_model_trainer.cc:321] Added: freq=34 size=6060 all=84282 active=84130 piece=▁phot
+I0000 00:00:1793366637.291548      48 bpe_model_trainer.cc:321] Added: freq=34 size=6080 all=84324 active=84172 piece=▁shown
+I0000 00:00:1793366637.291692      48 bpe_model_trainer.cc:321] Added: freq=34 size=6100 all=84334 active=84182 piece=▁effort
+I0000 00:00:1793366637.291870      48 bpe_model_trainer.cc:321] Added: freq=34 size=6120 all=84350 active=84198 piece=▁district
+I0000 00:00:1793366637.292146      48 bpe_model_trainer.cc:321] Added: freq=33 size=6140 all=84415 active=84263 piece=ूद
+I0000 00:00:1793366637.292628      48 bpe_model_trainer.cc:321] Added: freq=33 size=6160 all=84595 active=84443 piece=amed
+I0000 00:00:1793366637.292974      48 bpe_model_trainer.cc:321] Added: freq=33 size=6180 all=84695 active=84543 piece=▁उर्
+I0000 00:00:1793366637.293308      48 bpe_model_trainer.cc:321] Added: freq=33 size=6200 all=84796 active=84644 piece=प्रिय
+I0000 00:00:1793366637.293553      48 bpe_model_trainer.cc:321] Added: freq=33 size=6220 all=84864 active=84712 piece=▁दीर्
+I0000 00:00:1793366637.293735      48 bpe_model_trainer.cc:321] Added: freq=33 size=6240 all=84882 active=84730 piece=▁प्रसि
+I0000 00:00:1793366637.293938      48 bpe_model_trainer.cc:321] Added: freq=33 size=6260 all=84907 active=84755 piece=▁Kashmir
+I0000 00:00:1793366637.294099      48 bpe_model_trainer.cc:321] Added: freq=33 size=6280 all=84918 active=84766 piece=▁Education
+I0000 00:00:1793366637.294504      48 bpe_model_trainer.cc:321] Added: freq=32 size=6300 all=85050 active=84898 piece=omb
+I0000 00:00:1793366637.294963      48 bpe_model_trainer.cc:321] Added: freq=32 size=6320 all=85196 active=85044 piece=▁Mon
+I0000 00:00:1793366637.295266      48 bpe_model_trainer.cc:321] Added: freq=32 size=6340 all=85292 active=85140 piece=▁सदन
+I0000 00:00:1793366637.295552      48 bpe_model_trainer.cc:321] Added: freq=32 size=6360 all=85355 active=85203 piece=▁दर्द
+I0000 00:00:1793366637.295734      48 bpe_model_trainer.cc:321] Added: freq=32 size=6380 all=85370 active=85218 piece=▁डिस्क
+I0000 00:00:1793366637.295885      48 bpe_model_trainer.cc:321] Added: freq=32 size=6400 all=85387 active=85235 piece=▁wishes
+I0000 00:00:1793366637.296004      48 bpe_model_trainer.cc:321] Added: freq=32 size=6420 all=85390 active=85238 piece=▁नागरिकों
+I0000 00:00:1793366637.296380      48 bpe_model_trainer.cc:321] Added: freq=31 size=6440 all=85514 active=85362 piece=lig
+I0000 00:00:1793366637.296802      48 bpe_model_trainer.cc:321] Added: freq=31 size=6460 all=85711 active=85559 piece=▁औप
+I0000 00:00:1793366637.297208      48 bpe_model_trainer.cc:321] Added: freq=31 size=6480 all=85837 active=85685 piece=▁टाइ
+I0000 00:00:1793366637.297510      48 bpe_model_trainer.cc:321] Added: freq=31 size=6500 all=85928 active=85776 piece=▁अल्प
+I0000 00:00:1793366637.297736      48 bpe_model_trainer.cc:321] Added: freq=31 size=6520 all=85986 active=85834 piece=▁lived
+I0000 00:00:1793366637.297906      48 bpe_model_trainer.cc:321] Added: freq=31 size=6540 all=85985 active=85833 piece=▁पद्धति
+I0000 00:00:1793366637.298046      48 bpe_model_trainer.cc:321] Added: freq=31 size=6560 all=85988 active=85836 piece=▁democracy
+I0000 00:00:1793366637.298523      48 bpe_model_trainer.cc:321] Added: freq=30 size=6580 all=86172 active=86020 piece=ंटी
+I0000 00:00:1793366637.298928      48 bpe_model_trainer.cc:321] Added: freq=30 size=6600 all=86281 active=86129 piece=रिया
+I0000 00:00:1793366637.299307      48 bpe_model_trainer.cc:321] Added: freq=30 size=6620 all=86398 active=86246 piece=▁सीख
+I0000 00:00:1793366637.299552      48 bpe_model_trainer.cc:321] Added: freq=30 size=6640 all=86442 active=86290 piece=▁खड़े
+I0000 00:00:1793366637.299745      48 bpe_model_trainer.cc:321] Added: freq=30 size=6660 all=86476 active=86324 piece=िश्तों
+I0000 00:00:1793366637.299924      48 bpe_model_trainer.cc:321] Added: freq=30 size=6680 all=86504 active=86352 piece=▁पुत्र
+I0000 00:00:1793366637.300073      48 bpe_model_trainer.cc:321] Added: freq=30 size=6700 all=86515 active=86363 piece=▁unless
+I0000 00:00:1793366637.300246      48 bpe_model_trainer.cc:321] Added: freq=30 size=6720 all=86521 active=86369 piece=▁Research
+I0000 00:00:1793366637.300364      48 bpe_model_trainer.cc:321] Added: freq=30 size=6740 all=86516 active=86364 piece=▁प्रयोजनों
+I0000 00:00:1793366637.300678      48 bpe_model_trainer.cc:321] Added: freq=29 size=6760 all=86624 active=86472 piece=िज
+I0000 00:00:1793366637.301238      48 bpe_model_trainer.cc:321] Added: freq=29 size=6780 all=86824 active=86672 piece=omen
+I0000 00:00:1793366637.301523      48 bpe_model_trainer.cc:321] Added: freq=29 size=6800 all=86903 active=86751 piece=▁चेह
+I0000 00:00:1793366637.301763      48 bpe_model_trainer.cc:321] Added: freq=29 size=6820 all=86958 active=86806 piece=▁fert
+I0000 00:00:1793366637.301988      48 bpe_model_trainer.cc:321] Added: freq=29 size=6840 all=87007 active=86855 piece=▁Today
+I0000 00:00:1793366637.302158      48 bpe_model_trainer.cc:321] Added: freq=29 size=6860 all=87016 active=86864 piece=▁हिसाब
+I0000 00:00:1793366637.302360      48 bpe_model_trainer.cc:321] Added: freq=29 size=6880 all=87047 active=86895 piece=▁दयावान
+I0000 00:00:1793366637.302491      48 bpe_model_trainer.cc:321] Added: freq=29 size=6900 all=87050 active=86898 piece=▁contains
+I0000 00:00:1793366637.302845      48 bpe_model_trainer.cc:321] Added: freq=28 size=6920 all=87240 active=87088 piece=थे
+I0000 00:00:1793366637.303404      48 bpe_model_trainer.cc:321] Added: freq=28 size=6940 all=87479 active=87327 piece=सोस
+I0000 00:00:1793366637.303729      48 bpe_model_trainer.cc:321] Added: freq=28 size=6960 all=87610 active=87458 piece=enge
+I0000 00:00:1793366637.304072      48 bpe_model_trainer.cc:321] Added: freq=28 size=6980 all=87709 active=87557 piece=▁rid
+I0000 00:00:1793366637.304358      48 bpe_model_trainer.cc:321] Added: freq=28 size=7000 all=87792 active=87640 piece=erous
+I0000 00:00:1793366637.304650      48 bpe_model_trainer.cc:321] Added: freq=28 size=7020 all=87882 active=87730 piece=▁आसान
+I0000 00:00:1793366637.304884      48 bpe_model_trainer.cc:321] Added: freq=28 size=7040 all=87921 active=87769 piece=▁Uttar
+I0000 00:00:1793366637.305053      48 bpe_model_trainer.cc:321] Added: freq=28 size=7060 all=87939 active=87787 piece=▁चाहें
+I0000 00:00:1793366637.305262      48 bpe_model_trainer.cc:321] Added: freq=28 size=7080 all=87955 active=87803 piece=▁supply
+I0000 00:00:1793366637.305412      48 bpe_model_trainer.cc:321] Added: freq=28 size=7100 all=87949 active=87797 piece=▁correct
+I0000 00:00:1793366637.305569      48 bpe_model_trainer.cc:321] Added: freq=28 size=7120 all=87951 active=87799 piece=▁connection
+I0000 00:00:1793366637.306018      48 bpe_model_trainer.cc:321] Added: freq=27 size=7140 all=88125 active=87973 piece=pta
+I0000 00:00:1793366637.306463      48 bpe_model_trainer.cc:321] Added: freq=27 size=7160 all=88286 active=88134 piece=▁29
+I0000 00:00:1793366637.307102      48 bpe_model_trainer.cc:321] Added: freq=27 size=7180 all=88405 active=88253 piece=▁Har
+I0000 00:00:1793366637.307383      48 bpe_model_trainer.cc:321] Added: freq=27 size=7200 all=88484 active=88332 piece=▁पेज
+I0000 00:00:1793366637.307660      48 bpe_model_trainer.cc:321] Added: freq=27 size=7220 all=88559 active=88407 piece=▁pict
+I0000 00:00:1793366637.307830      48 bpe_model_trainer.cc:321] Added: freq=27 size=7240 all=88590 active=88438 piece=▁Quran
+I0000 00:00:1793366637.307975      48 bpe_model_trainer.cc:321] Added: freq=27 size=7260 all=88613 active=88461 piece=▁जिसको
+I0000 00:00:1793366637.308124      48 bpe_model_trainer.cc:321] Added: freq=27 size=7280 all=88628 active=88476 piece=▁desire
+I0000 00:00:1793366637.308313      48 bpe_model_trainer.cc:321] Added: freq=27 size=7300 all=88644 active=88492 piece=▁consult
+I0000 00:00:1793366637.308443      48 bpe_model_trainer.cc:321] Added: freq=27 size=7320 all=88648 active=88496 piece=▁प्रयुक्त
+I0000 00:00:1793366637.308697      48 bpe_model_trainer.cc:321] Added: freq=26 size=7340 all=88692 active=88540 piece=ठे
+I0000 00:00:1793366637.309264      48 bpe_model_trainer.cc:321] Added: freq=26 size=7360 all=88902 active=88750 piece=▁3,
+I0000 00:00:1793366637.309618      48 bpe_model_trainer.cc:321] Added: freq=26 size=7380 all=89028 active=88876 piece=चलित
+I0000 00:00:1793366637.309984      48 bpe_model_trainer.cc:321] Added: freq=26 size=7400 all=89145 active=88993 piece=▁pow
+I0000 00:00:1793366637.310344      48 bpe_model_trainer.cc:321] Added: freq=26 size=7420 all=89242 active=89090 piece=कृष्ण
+I0000 00:00:1793366637.310570      48 bpe_model_trainer.cc:321] Added: freq=26 size=7440 all=89279 active=89127 piece=▁तरफ़
+I0000 00:00:1793366637.310776      48 bpe_model_trainer.cc:321] Added: freq=26 size=7460 all=89300 active=89148 piece=▁daily
+I0000 00:00:1793366637.310932      48 bpe_model_trainer.cc:321] Added: freq=26 size=7480 all=89314 active=89162 piece=▁ब्याज
+I0000 00:00:1793366637.311121      48 bpe_model_trainer.cc:321] Added: freq=26 size=7500 all=89331 active=89179 piece=▁ग्राहक
+I0000 00:00:1793366637.311277      48 bpe_model_trainer.cc:321] Added: freq=26 size=7520 all=89338 active=89186 piece=▁assigned
+I0000 00:00:1793366637.311402      48 bpe_model_trainer.cc:321] Added: freq=26 size=7540 all=89326 active=89174 piece=▁configuration
+I0000 00:00:1793366637.311994      48 bpe_model_trainer.cc:321] Added: freq=25 size=7560 all=89607 active=89455 piece=गढ़
+I0000 00:00:1793366637.312430      48 bpe_model_trainer.cc:321] Added: freq=25 size=7580 all=89775 active=89623 piece=iles
+I0000 00:00:1793366637.312824      48 bpe_model_trainer.cc:321] Added: freq=25 size=7600 all=89899 active=89747 piece=▁एका
+I0000 00:00:1793366637.313106      48 bpe_model_trainer.cc:321] Added: freq=25 size=7620 all=89988 active=89836 piece=▁हाँ
+I0000 00:00:1793366637.313457      48 bpe_model_trainer.cc:321] Added: freq=25 size=7640 all=90048 active=89896 piece=▁earn
+I0000 00:00:1793366637.313608      48 bpe_model_trainer.cc:321] Added: freq=25 size=7660 all=90065 active=89913 piece=▁धीरे
+I0000 00:00:1793366637.313855      48 bpe_model_trainer.cc:321] Added: freq=25 size=7680 all=90103 active=89951 piece=▁apply
+I0000 00:00:1793366637.314034      48 bpe_model_trainer.cc:321] Added: freq=25 size=7700 all=90122 active=89970 piece=▁video
+I0000 00:00:1793366637.314166      48 bpe_model_trainer.cc:321] Added: freq=25 size=7720 all=90133 active=89981 piece=ptember
+I0000 00:00:1793366637.314372      48 bpe_model_trainer.cc:321] Added: freq=25 size=7740 all=90146 active=89994 piece=▁अभिलेख
+I0000 00:00:1793366637.314501      48 bpe_model_trainer.cc:321] Added: freq=25 size=7760 all=90145 active=89993 piece=▁schools
+I0000 00:00:1793366637.314613      48 bpe_model_trainer.cc:321] Added: freq=25 size=7780 all=90134 active=89982 piece=▁कंपनियों
+I0000 00:00:1793366637.314896      48 bpe_model_trainer.cc:321] Added: freq=24 size=7800 all=90170 active=90018 piece=ड्
+I0000 00:00:1793366637.315492      48 bpe_model_trainer.cc:321] Added: freq=24 size=7820 all=90396 active=90244 piece=▁Bl
+I0000 00:00:1793366637.315893      48 bpe_model_trainer.cc:321] Added: freq=24 size=7840 all=90552 active=90400 piece=ख़्श
+I0000 00:00:1793366637.340904      48 trainer_interface.cc:702] Saving model: /kaggle/working/assignment3_outputs/checkpoints/transformer/spm.model
+I0000 00:00:1793366637.344426      48 trainer_interface.cc:714] Saving vocabs: /kaggle/working/assignment3_outputs/checkpoints/transformer/spm.vocab
+
+
+--- output 1 (stream) ---
+[transformer] SentencePiece vocab 8000 (shared English+Hindi), unk rate on valid+test 0.0719%
+[transformer] loaded in 1.5s | params total 33,523,712 trainable 33,523,712 | adaptation: trained from scratch (random initialisation, shared SentencePiece BPE vocabulary)
+[transformer] truncated examples: train 0/20000 valid 0/520
+[transformer] sample batch shapes: {'src_ids': (8, 4), 'tgt_in': (8, 5), 'labels': (8, 5)}
+[test] causal mask OK: max change at positions <= 2: 0.00e+00; later positions change: 8.93e+00
+[test] encoder source mask / shapes OK: logits (8, 5, 8000); embedding (8000, 512); layers 4+4
+[smoke] logits (2, 32, 8000) labels (2, 32) counted tokens 62
+[smoke] loss 9.984 grad_norm 7.732; sample output: ''
+[transformer] max_new_tokens = 164 (from validation reference lengths)
+[transformer] steps/epoch=313 total_steps=9390 micro_batch=64 accum=1 precision=fp16_amp
+[transformer] epoch 1 step 313/9390 train_loss 7.7307 val_nll 6.6932 *best* elapsed 21s
+[transformer] epoch 2 step 626/9390 train_loss 6.8364 val_nll 6.1903 *best* elapsed 41s
+[transformer] epoch 3 step 939/9390 train_loss 6.3238 val_nll 5.8016 *best* elapsed 62s
+[transformer] epoch 4 step 1252/9390 train_loss 5.9762 val_nll 5.5559 *best* elapsed 82s
+[transformer] epoch 5 step 1565/9390 train_loss 5.7117 val_nll 5.3083 *best* elapsed 103s
+[transformer] epoch 6 step 1878/9390 train_loss 5.5106 val_nll 5.2244 *best* elapsed 124s
+[transformer] epoch 7 step 2191/9390 train_loss 5.3555 val_nll 5.0927 *best* elapsed 145s
+[transformer] epoch 8 step 2504/9390 train_loss 5.2262 val_nll 5.0220 *best* elapsed 166s
+[transformer] epoch 9 step 2817/9390 train_loss 5.1215 val_nll 4.9970 *best* elapsed 187s
+[transformer] epoch 10 step 3130/9390 train_loss 5.0266 val_nll 4.9268 *best* elapsed 208s
+[transformer] epoch 11 step 3443/9390 train_loss 4.9437 val_nll 4.9119 *best* elapsed 229s
+[transformer] epoch 12 step 3756/9390 train_loss 4.8704 val_nll 4.8659 *best* elapsed 250s
+[transformer] epoch 13 step 4069/9390 train_loss 4.7982 val_nll 4.8521 *best* elapsed 271s
+[transformer] epoch 14 step 4382/9390 train_loss 4.7357 val_nll 4.8145 *best* elapsed 292s
+[transformer] epoch 15 step 4695/9390 train_loss 4.6770 val_nll 4.7965 *best* elapsed 313s
+[transformer] epoch 16 step 5008/9390 train_loss 4.6195 val_nll 4.7684 *best* elapsed 334s
+[transformer] epoch 17 step 5321/9390 train_loss 4.5657 val_nll 4.7758  elapsed 354s
+[transformer] epoch 18 step 5634/9390 train_loss 4.5147 val_nll 4.7495 *best* elapsed 375s
+[transformer] epoch 19 step 5947/9390 train_loss 4.4707 val_nll 4.7486 *best* elapsed 396s
+[transformer] epoch 20 step 6260/9390 train_loss 4.4189 val_nll 4.7417 *best* elapsed 417s
+[transformer] epoch 21 step 6573/9390 train_loss 4.3804 val_nll 4.7179 *best* elapsed 438s
+[transformer] epoch 22 step 6886/9390 train_loss 4.3409 val_nll 4.7065 *best* elapsed 459s
+[transformer] epoch 23 step 7199/9390 train_loss 4.2970 val_nll 4.7201  elapsed 480s
+[transformer] epoch 24 step 7512/9390 train_loss 4.2599 val_nll 4.7271  elapsed 501s
+[transformer] epoch 25 step 7825/9390 train_loss 4.2244 val_nll 4.7258  elapsed 522s
+[transformer] epoch 26 step 8138/9390 train_loss 4.1894 val_nll 4.7126  elapsed 543s
+[transformer] best checkpoint reloaded: val_nll 4.7065 (recorded best 4.7065)
+[transformer] test: 500 sentences in 33.2s (15.04 sent/s); batch-1 mean 190 ms; empty outputs 0
+[transformer] sampled generation reproducible with a fixed seed: True
+{'status': 'ok', 'adaptation': 'trained from scratch (random initialisation, shared SentencePiece BPE vocabulary)'}
+
+
+==========================================================================================
+mT5 run log (cell 27)
+==========================================================================================
+--- output 0 (display text) ---
+Downloading bytes:           |  0.00B            
+
+--- output 1 (display text) ---
+Reconstructing (incomplete total...): |          |  0.00B /  0.00B            
+
+--- output 2 (display text) ---
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]
+
+--- output 3 (stream) ---
+[mt5] downloaded google/mt5-small -> /root/.cache/huggingface/hub/models--google--mt5-small/snapshots/73fb5dbe4756edadc8fbe8c769b0a109493acf7a
+
+
+--- output 4 (stream) ---
+[transformers] The tokenizer you are loading from '/root/.cache/huggingface/hub/models--google--mt5-small/snapshots/73fb5dbe4756edadc8fbe8c769b0a109493acf7a' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+
+
+--- output 5 (stream) ---
+[memory] mt5: ~3.4 GB before activations (params 172M)
+
+
+--- output 6 (display text) ---
+Loading weights:   0%|          | 0/192 [00:00<?, ?it/s]
+
+--- output 7 (stream) ---
+[transformers] The tied weights mapping and config for this model specifies to tie shared.weight to lm_head.weight, but both are present in the checkpoints with different values, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning.
+
+
+--- output 8 (stream) ---
+[mt5] loaded in 29.1s | params total 300,176,768 trainable 300,176,768 | adaptation: full fine-tuning of pretrained google/mt5-small (all weights trained; mT5 was not previously fine-tuned for this task)
+[mt5] truncated examples: train 25/20000 valid 0/520
+[mt5] sample batch shapes: {'input_ids': (1, 9), 'attention_mask': (1, 9), 'labels': (1, 5)}
+[test] loss equality OK (ours 13.9828 vs HF 13.9828); logits (1, 5, 250112); labels padded with -100; fp32 training
+[smoke] logits (1, 52, 250112) labels (1, 52) counted tokens 52
+[smoke] loss 28.050 grad_norm 7838.772; sample output: '<extra_id_0>'
+[mt5] max_new_tokens = 197 (from validation reference lengths)
+[mt5] steps/epoch=2500 total_steps=1000 micro_batch=1 accum=8 precision=fp32
+
+
+--- output 9 (display text) ---
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]
+
+--- output 10 (stream) ---
+[mt5] epoch 1 step 1000/1000 train_loss 4.8509 val_nll 2.9424 *best* elapsed 826s
+
+
+--- output 11 (display text) ---
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]
+
+--- output 12 (display text) ---
+Loading weights:   0%|          | 0/190 [00:00<?, ?it/s]
+
+--- output 13 (stream) ---
+[transformers] The tied weights mapping and config for this model specifies to tie shared.weight to lm_head.weight, but both are present in the checkpoints with different values, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning.
+
+
+--- output 14 (stream) ---
+[mt5] best checkpoint reloaded: val_nll 2.9424 (recorded best 2.9424)
+[mt5] test: 500 sentences in 322.8s (1.55 sent/s); batch-1 mean 1753 ms; empty outputs 0
+[mt5] sampled generation reproducible with a fixed seed: True
+{'status': 'ok', 'adaptation': 'full fine-tuning of pretrained google/mt5-small (all weights trained; mT5 was not previously fine-tuned for this task)'}
+
+
+==========================================================================================
+LLaMA run log (cell 30)
+==========================================================================================
+--- output 0 (display text) ---
+Downloading bytes:           |  0.00B            
+
+--- output 1 (display text) ---
+Reconstructing (incomplete total...): |          |  0.00B /  0.00B            
+
+--- output 2 (display text) ---
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]
+
+--- output 3 (stream) ---
+[llama] downloaded meta-llama/Llama-3.2-1B -> /root/.cache/huggingface/hub/models--meta-llama--Llama-3.2-1B/snapshots/4e20de362430cd3b72f300e6b0f18e50e7166e08
+[llama] prompt style: plain; stop ids [128001]; pad id 128001
+[memory] llama: ~3.5 GB before activations (params 1236M)
+
+
+--- output 4 (display text) ---
+Loading weights:   0%|          | 0/146 [00:00<?, ?it/s]
+
+--- output 5 (stream) ---
+[llama] loaded in 19.7s | params total 1,247,086,592 trainable 11,272,192 | adaptation: LoRA fine-tuning (r=16, alpha=32) of pretrained meta-llama/Llama-3.2-1B; plain prompt
+[llama] truncated examples: train 4/20000 valid 0/520
+[llama] sample batch shapes: {'input_ids': (1, 23), 'attention_mask': (1, 23), 'labels': (1, 23), 'prompt_len': (1,)}
+[test] loss mask and loss equality OK (ours 2.5226 vs HF 2.5226); logits (1, 22, 128256); prompts contain no reference
+[smoke] logits (1, 105, 128256) labels (1, 105) counted tokens 70
+
+
+--- output 6 (stream) ---
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+
+
+--- output 7 (stream) ---
+[smoke] loss 1.986 grad_norm 3.987; sample output: 'स्कूल दत्तार्थ'
+[llama] max_new_tokens = 252 (from validation reference lengths)
+[llama] steps/epoch=625 total_steps=625 micro_batch=1 accum=32 precision=fp16_amp
+[llama] epoch 1 step 250/625 train_loss 1.4081 val_nll 1.0854 *best* elapsed 2022s
+[llama] epoch 1 step 500/625 train_loss 1.2776 val_nll 1.0557 *best* elapsed 4007s
+[llama] epoch 1 step 625/625 train_loss 1.2450 val_nll 1.0510 *best* elapsed 4998s
+[llama] best checkpoint reloaded: val_nll 1.0510 (recorded best 1.0510)
+[llama] test: 500 sentences in 504.6s (0.99 sent/s); batch-1 mean 2675 ms; empty outputs 0
+[llama] sampled generation reproducible with a fixed seed: True
+{'status': 'ok', 'adaptation': 'LoRA fine-tuning (r=16, alpha=32) of pretrained meta-llama/Llama-3.2-1B; plain prompt'}
+
+
+==========================================================================================
+Gemma run status (cell 31)
+==========================================================================================
+--- output 0 (stream) ---
+[gemma] results exist, skipping (RESUME=True)
+{'status': 'ok', 'reason': 'reused existing results (RESUME=True)', 'adaptation': 'LoRA fine-tuning (r=16, alpha=32) of pretrained google/gemma-3-1b-pt; plain prompt'}
+
+
+==========================================================================================
+Primary quality metrics and paired bootstrap (cell 33)
+==========================================================================================
+--- output 0 (stream) ---
+models with results: ['transformer', 'mt5', 'llama', 'gemma'] | not completed: []
+all 4 completed models are evaluated on the same 500 test ids with identical sources and references
+| model | n_test | bleu | bleu_ci_low | bleu_ci_high | chrf | chrf_ci_low | chrf_ci_high | length_ratio | empty_rate | off_target_rate | number_preservation |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| transformer | 500 | 2.09 | 1.64 | 2.50 | 18.38 | 17.80 | 18.95 | 1.01 | 0.00 | 0.00 | 0.12 |
+| mt5 | 500 | 0.68 | 0.51 | 0.87 | 12.31 | 11.80 | 12.82 | 1.86 | 0.00 | 0.00 | 0.14 |
+| llama | 500 | 10.32 | 9.18 | 11.62 | 34.34 | 33.09 | 35.41 | 1.07 | 0.00 | 0.00 | 0.89 |
+| gemma | 500 | 15.80 | 14.72 | 16.92 | 41.40 | 40.34 | 42.43 | 0.96 | 0.00 | 0.00 | 0.97 |
+
+Pairwise paired-bootstrap results (Holm-corrected):
+metric           a     b  delta_a_minus_b  p_raw  p_holm  significant_0.05
+  bleu transformer   mt5         1.414649    0.0     0.0              True
+  bleu transformer llama        -8.229391    0.0     0.0              True
+  bleu transformer gemma       -13.709190    0.0     0.0              True
+  bleu         mt5 llama        -9.644041    0.0     0.0              True
+  bleu         mt5 gemma       -15.123839    0.0     0.0              True
+  bleu       llama gemma        -5.479799    0.0     0.0              True
+  chrf transformer   mt5         6.079457    0.0     0.0              True
+  chrf transformer llama       -15.958864    0.0     0.0              True
+  chrf transformer gemma       -23.016605    0.0     0.0              True
+  chrf         mt5 llama       -22.038321    0.0     0.0              True
+  chrf         mt5 gemma       -29.096062    0.0     0.0              True
+  chrf       llama gemma        -7.057741    0.0     0.0              True
+
+metric configuration: {
+ "sacrebleu_version": "2.6.0",
+ "bleu": "nrefs:1|case:mixed|eff:no|tok:none|smooth:exp|version:2.6.0 (inputs pre-tokenised with hi_tok; Hindi danda separated)",
+ "chrf": "nrefs:1|case:mixed|eff:yes|nc:6|nw:0|space:no|version:2.6.0 (char n-gram order 6, word order 0, beta 2; computed on NFC text)"
+}
+
+
+==========================================================================================
+Parameters, timing and model comparison (cell 34)
+==========================================================================================
+--- output 0 (stream) ---
+| model | bleu | chrf | train_seconds | params_total | params_trainable | batched_ms_per_sent | b1_mean_ms | sent_per_s |
+|---|---|---|---|---|---|---|---|---|
+| Basic Transformer | 2.09 | 18.38 | 542.92 | 33523712 | 33523712 | 66.47 | 189.99 | 15.04 |
+| mT5 | 0.68 | 12.31 | 825.65 | 300176768 | 300176768 | 645.54 | 1,753.29 | 1.55 |
+| LLaMA | 10.32 | 34.34 | 4,998.27 | 1247086592 | 11272192 | 1,009.24 | 2,674.61 | 0.99 |
+| Gemma | 15.80 | 41.40 | 7,765.92 | 1012931712 | 13045760 | 630.70 | 2,934.07 | 1.59 |
+
+Adaptation methods:
+   Basic Transformer: trained from scratch (random initialisation, shared SentencePiece BPE vocabulary)
+                 mT5: full fine-tuning of pretrained google/mt5-small (all weights trained; mT5 was not previously fine-tuned for this task)
+               LLaMA: LoRA fine-tuning (r=16, alpha=32) of pretrained meta-llama/Llama-3.2-1B; plain prompt
+               Gemma: LoRA fine-tuning (r=16, alpha=32) of pretrained google/gemma-3-1b-pt; plain prompt
+
+Gemma has the highest BLEU (15.80) and chrF (41.40). Its lead over the runner-up LLaMA is statistically significant after Holm correction (paired bootstrap, 300 resamples) on both metrics. Lowest batched latency: Basic Transformer. Systems differ in pretraining, size, tokenizer and adaptation, so this ranks these four systems, not the architectures in isolation.
+
+
+==========================================================================================
+Temperature analysis (cell 36)
+==========================================================================================
+--- output 0 (stream) ---
+| model | temperature | n_samples | bleu | chrf | off_target_rate | rep3_mean | number_preservation | distinct2 | unique_output_share |
+|---|---|---|---|---|---|---|---|---|---|
+| transformer | greedy | 1 | 1.093 | 17.799 | 0.000 | 0.079 | 0.000 | n/a | n/a |
+| transformer | 0.500 | 1 | 1.547 | 21.017 | 0.000 | 0.016 | 0.000 | n/a | n/a |
+| transformer | 1.000 | 1 | 0.959 | 18.668 | 0.000 | 0.000 | 0.000 | n/a | n/a |
+| transformer | 1.500 | 1 | 0.207 | 16.035 | 0.042 | 0.000 | 0.000 | n/a | n/a |
+| mt5 | greedy | 1 | 0.992 | 12.199 | 0.000 | 0.316 | 0.000 | n/a | n/a |
+| mt5 | 0.500 | 1 | 1.211 | 13.064 | 0.000 | 0.026 | 0.000 | n/a | n/a |
+| mt5 | 1.000 | 1 | 0.522 | 14.857 | 0.000 | 0.000 | 0.000 | n/a | n/a |
+| mt5 | 1.500 | 1 | 0.366 | 12.993 | 0.042 | 0.000 | 0.000 | n/a | n/a |
+| llama | greedy | 1 | 9.548 | 36.332 | 0.000 | 0.013 | 0.750 | n/a | n/a |
+| llama | 0.500 | 1 | 8.971 | 33.159 | 0.000 | 0.008 | 0.750 | n/a | n/a |
+| llama | 1.000 | 1 | 0.665 | 19.567 | 0.000 | 0.000 | 0.000 | n/a | n/a |
+| llama | 1.500 | 1 | 0.037 | 1.981 | 0.958 | 0.000 | 0.000 | n/a | n/a |
+| gemma | greedy | 1 | 14.656 | 41.835 | 0.000 | 0.016 | 1.000 | n/a | n/a |
+| gemma | 0.500 | 1 | 16.456 | 42.418 | 0.000 | 0.008 | 1.000 | n/a | n/a |
+| gemma | 1.000 | 1 | 3.398 | 24.698 | 0.000 | 0.000 | 0.000 | n/a | n/a |
+| gemma | 1.500 | 1 | 0.150 | 13.893 | 0.042 | 0.000 | 0.000 | n/a | n/a |
+
+Data-derived observations (no interpretation beyond the numbers):
+- Basic Transformer: BLEU 1.55 (T=0.5) -> 0.21 (T=1.5); chrF 21.02 -> 16.03; off-target script rate 0.000 -> 0.042; distinct-2 nan -> nan
+- mT5: BLEU 1.21 (T=0.5) -> 0.37 (T=1.5); chrF 13.06 -> 12.99; off-target script rate 0.000 -> 0.042; distinct-2 nan -> nan
+- LLaMA: BLEU 8.97 (T=0.5) -> 0.04 (T=1.5); chrF 33.16 -> 1.98; off-target script rate 0.000 -> 0.958; distinct-2 nan -> nan
+- Gemma: BLEU 16.46 (T=0.5) -> 0.15 (T=1.5); chrF 42.42 -> 13.89; off-target script rate 0.000 -> 0.042; distinct-2 nan -> nan
+
+
+==========================================================================================
+Qualitative sample inspection (21 cases) (cell 38)
+==========================================================================================
+--- output 0 (stream) ---
+21 examples selected from real outputs. Preview:
+
+| sample_id | selection_reason | English source | Hindi reference | Basic Transformer | mT5 | LLaMA | Gemma | Observed issue |
+|---|---|---|---|---|---|---|---|---|
+| test:2284 | strong translation (highest sentence chrF of any model) | And I think about my father. | और मैं अपने पिता के बारे में सोचता हूँ। | और मैं अपने पिता के बारे में सोचिए। | इससे तुम्हारे पति को बताना चाहते हैं। | और मैं अपने पिता के बारे में सोचता हूं। | और मैं अपने पिता के बारे में सोचता हूँ। | no automatic flag; compare with the reference by reading |
+| test:541 | strong translation (highest sentence chrF of any model) | The Energy Department said Wednesday that U.S. supplies i... | ऊर्जा विभाग ने बुधवार को कहा कि अमेरिकी आपूर्ति पिछले सप्... | परमाणु ऊर्जा विभाग ने कहा कि अब अब अब तक लगभग 5 लाख टन मि... | इस समाचार पत्र ने कहा कि भारतीय ऊर्जा योजनाओं में कुल ७५ ... | ऊर्जा विभाग ने 4.1 मिलियन बैरल्स के साथ संयुक्त राज्य अमर... | ऊर्जा विभाग ने बुधवार को कहा कि पिछले सप्ताह अमेरिकी आपूर... | Basic Transformer: number(s) from the source missing: 4.1... |
+| test:577 | strong translation (highest sentence chrF of any model) | Does he know about phone hacking? | क्या वह फोन हैकिंग के बारे में जानते थे? | क्या वह टोकोकरी में फोटो को फोटो क्या है? | इसके बारे में जानता है? | क्या वह फोन हैकिंग के बारे में जानता है? | क्या वह फोन हacking के बारे में जानता है? | no automatic flag; compare with the reference by reading |
+| test:1770 | possible omission (hypothesis much shorter than reference) | The NIA wants to find the other suspects in this case by ... | अहमद से पूछताछ के जरिये एनआइए मामले में अन्य आरोपियों को ... | इस प्रकार की नमूना को इस प्रकार के अन्य अन्य मामले में अक... | इस बात में हमने यह बात करने के लिए यह बात करने के लिए यह ... | एनआईए ने इस मामले में अहमद को पूछताछ करके दूसरे गिरफ्तारो... | ყოछ् | mT5: length ratio 3.81 (possible addition) / Gemma: lengt... |
+| test:2407 | possible omission (hypothesis much shorter than reference) | And so now an arrest warrant has been issued for him by t... | और इसीलिए अब उनके खिलाफ गुजरात पुलिस द्वारा गिरफ्तारी वार... | और अब गुजरात के लिए अब गुजरात ने उसे कांग्रेस द्वारा दी है। | इसके बाद वह भारतीय सेना के लिए नई धारा नंबर दिया गया है। | और अब गुजरात पुलिस ने उसे गिरफ्तार करने के लिए एक गिरफ्ता... | ყოछ् | Gemma: length ratio 0.06 (possible omission) |
+| test:915 | possible omission (hypothesis much shorter than reference) | Why should an independent Scotland be expected to do Euro... | वैसे भी स्वतंत्र स्कॉटलैंड से यूरोप की बिडिंग करने की अपे... | क्यों कि स्वतंत्रता की स्वतंत्रता की स्वतंत्रता की किसी त... | इसलिए भारतीय अमेरिकी व्यापारी को नई बात करने के लिए यह बा... | क्या स्वतंत्र स्कॉटलैंड को कोई विशेष काम करना चाहिए, क्यो... | ყოछ्छ्छ्छ्छ्छ्छ्छ्छ्छ्छ्छ्छ्छ्छ्छ्छ्छ्छ्छ्छ्छ्छ्छ्छ्छ्छ्छ... | Gemma: length ratio 0.07 (possible omission) |
+| test:1754 | possible addition (hypothesis much longer than reference) | This includes officers down to clerical staff. | जिनमें अधिकारी से लेकर चपरासी शामिल हैं। | यह अधिकारियों को अधिकारियों के लिए अधिकारियों को आकर फॉर्... | इसमें विशेष रूप से विशेष रूप से विशेष रूप से विशेष रूप से... | यह श्रेणी क्लर्क के नीचे के अधिकारियों को भी शामिल करती है। | इसमें अधिकारी, कर्मचारी, लिपिक, लेखाकार, लेखाकार, लेखाकार... | Basic Transformer: length ratio 1.86 (possible addition) ... |
+| test:15 | possible addition (hypothesis much longer than reference) | Americans don't buy as much gas as they used to. | अमेरिकी लोग अब पहले जितनी गैस नहीं खरीदते। | अमेरिका में अमेरिका के रूप में उपयोगीीी की आवश्यकता होती है। | इसके लिए अमेरिकियों को न ही न ही न ही न ही न ही न ही न ही... | अमेरिकियों ने पिछले कुछ वर्षों से अधिक गैस खरीदते नहीं हैं। | अमरीकी लोग गैस की खपत कम कर रहे हैं। | mT5: length ratio 12.25 (possible addition) |
+| test:645 | possible addition (hypothesis much longer than reference) | Was his death the result of a crime? | क्या उसकी हत्या किसी अपराध के कारण हुई? | उसके परिणामस्वरूप का परिणाम क्या हो गया? | इसके बाद वह मृत्यु के कारण वह मृत्यु के कारण वह मृत्यु के... | क्या उसकी मृत्यु किस क्रिया के कारण हुई थी? | क्या उसकी मृत्यु किसी अपराध के कारण हुई? | mT5: length ratio 12.25 (possible addition) |
+| test:215 | numbers not preserved | Citing the Pakistan tour of the separatist the BJP leader... | गत वर्ष अलगाववादियों के पाकिस्तानी दौरे का हवाला देते हुए... | पाकिस्तान ने कहा कि पाकिस्तान के नारदाबाद में एक नानाथाल ... | इसके बाद भारतीय कांग्रेस ने कहा कि भारतीय सेना के अध्यक्ष... | पाकिस्तान के स्वतंत्रता संग्राम के दौरान भाजपा नेता ने कह... | पाकिस्तान दौरे पर उग्रवादी नेताओं की चर्चा करते हुए भाजपा... | Basic Transformer: number(s) from the source missing: 201... |
+| test:441 | numbers not preserved | A.R. Rahman sang his signature songs in the musical eveni... | रात 8 बजे शुरू हुए इस म्यूजिकल नाइट में रहमान अपने सिग्ने... | एक नासिक गीत को उनके गीत गीत में गीत गीत की गई। | इस गीत में यह गीत किया गया। | आर. राहमान ने 8 बजे से शुरू हुई संगीत शाम में अपनी साइनेट... | आर. आर. रहमान ने संगीत संध्या में अपनी हस्ताक्षर गीत गाए। | Basic Transformer: number(s) from the source missing: 8 /... |
+| test:460 | numbers not preserved | Australian diplomats played a key role in pushing for "su... | वर्ष 2015 में समाप्त हो रहे एम.डी.डी. को प्रतिस्थापित करन... | एकललैंड की स्थापना के लिए एक प्रमुख प्रमुख ऊर्जा ऊर्जा ऊर... | इसके लिए अमेरिकी राष्ट्रपति ने राष्ट्रीय विकास योजनाओं को... | ऑस्ट्रेलिया के राजनयिकों ने मौजूदा मानकों को बदलने के लिए... | ऑस्ट्रेलिया के राजनयिकों ने संयुक्त राष्ट्र सतत विकास शिख... | Basic Transformer: number(s) from the source missing: 201... |
+| test:1936 | off-target script, copy or empty output | Morsi's speech in Tahrir Square was filled with dramatic ... | तहरीर स्कवायर में मोरसी का भाषण नाटकीय लोकप्रिय मुद्राओं ... | तालाब की चौदहवीं सदी के साथ नाटक नाटक नाटक नाटक नाटक नाटक... | इस सभा में हिन्दू भाषा के लिए नई भाषा के साथ नई भाषाओं के... | मोर्सी का तahrir स्क्वार में अभिनयपूर्ण पॉपुलर गीतों से भ... | ყო. | mT5: length ratio 4.38 (possible addition) / Gemma: lengt... |
+| test:2284 | largest disagreement between models (spread of sentence c... | And I think about my father. | और मैं अपने पिता के बारे में सोचता हूँ। | और मैं अपने पिता के बारे में सोचिए। | इससे तुम्हारे पति को बताना चाहते हैं। | और मैं अपने पिता के बारे में सोचता हूं। | और मैं अपने पिता के बारे में सोचता हूँ। | no automatic flag; compare with the reference by reading |
+| test:2137 | largest disagreement between models (spread of sentence c... | Dhirubhai, Kokilaben, their two sons, Mukesh and Anil Amb... | धीरूभाई, कोकिलाबेन, दो बेटे मुकेश और अनिल अंबानी और इनकी ... | अलीबा, कुमार ने दोहराई, नदरा, श्रीराम, नदरा, नद, अली, नदर... | इसके दोनों पति, कृष्ण और कृष्ण और कृष्ण और कृष्ण और कृष्ण... | दhirubhai, कोकिलaben, उनके दो बेटे, मुकेश और अनिल अम्बानी... | धिरुभाई, कोकिलाबेन, उनके दो बेटे मुकेश और अनिल अंबानी और ... | mT5: length ratio 6.12 (possible addition) |
+| test:2105 | largest disagreement between models (spread of sentence c... | The expression on the Chief Minister's face showed that h... | मुख्यमंत्री के चेहरे पर भी यही भाव था कि उन्होंने सिंह के... | मुख्यमंत्री ने यह समझ लिया कि वे मुख्यमंत्री के मुख्यमंत्... | इस बात में यह कहा गया कि वह उसकी बात की बात थी कि वह उसकी... | मुख्यमंत्री के चेहरे पर अभिव्यक्ति के अनुसार यह संकेत है ... | मुख्यमंत्री के चेहरे पर यह भाव था कि उन्होंने सिंह के भाष... | no automatic flag; compare with the reference by reading |
+| test:121 | pre-selected qualitative set (stratified by length) | To avoid embarrassment, Berlusconi claimed loneliness as ... | किरकिरी से बचने के लिए बर्लुस्कोनी ने अपने इस फैसले के पी... | रात्रियों को अपने पति के लिए प्लेटिवृत्तियों का दावा करते... | इसके लिए वह नई बात नहीं थी। | बेर्लुस्किनी ने अपने विवाह के लिए अपने मन की अकेलेपन को अ... | असुविधा से बचने के लिए, बर्लुईनी ने अपनी शादी के लिए अकेल... | mT5: length ratio 0.41 (possible omission) |
+| test:177 | pre-selected qualitative set (stratified by length) | The consolation tour was an exercise organised by the BJP... | सांत्वना यात्रा का आयोजन पटना में हुए विस्फोटों में मारे ... | एक पर्यटकों द्वारा प्रवासी परिवारों के लिए एक बारहाल परिव... | इस सभा में राष्ट्रीय युद्ध के लिए एक विशेष कार्यक्रम किया... | पटना बम爆炸 के शिकारों के परिवारों को दुख देने के लिए बीजेप... | इस यात्रा का आयोजन भाजपा ने पटना बम विस्फोटों के पीड़ितों... | no automatic flag; compare with the reference by reading |
+| test:554 | pre-selected qualitative set (stratified by length) | She appointed an outside monitor to oversee major changes... | उसने नीतियों, प्रशिक्षण और पर्यवेक्षण में आर्थिक सुधारों ... | उन्होंने कई राज्यों में सुधारकों को प्रशिक्षण दिया, नई दि... | इसके लिए वह एक विशेष योजना के लिए एक विशेष योजना के लिए ए... | उन्होंने एक बाहरी निगरानी को नियुक्त किया जो प्राथमिक परि... | उसने बड़े बदलावों, जैसे नीतियों, प्रशिक्षण और पर्यवेक्षण ... | no automatic flag; compare with the reference by reading |
+| test:610 | pre-selected qualitative set (stratified by length) | Everything but the IT industry. | लेकिन आईटी उद्योग सब कुछ है। | सब कुछ उद्योग को हर चीज़ की अनुमति देता है। | इसके लिए यह बात है। | केवल आईटी उद्योग नहीं | आईटी उद्योग के अलावा बाकी सब। | no automatic flag; compare with the reference by reading |
+| test:884 | pre-selected qualitative set (stratified by length) | Specialist Technical Rescue Officer Peter Lau said: "Ruby... | विशेष तकनीकी बचाव अधिकारी पीटर लॉ ने कहाः "रूबी सौभाग्यपू... | विशेष रूप से विशेषकर ने कहा कि "अनानााना" को एक विशेषकर म... | इसके लिए यह बात कहा कि "अच्छी यात्रा थी।" | प्रोफेशनल तकनीकी बचाव अधिकारी पीटर लौ ने कहा कि रूबी को ब... | विशेषज्ञ तकनीकी बचाव अधिकारी पीटर लु ने कहाः "रूब्य को बह... | no automatic flag; compare with the reference by reading |
+
+blinded rubric template written for 120 (sentence, system) pairs; model names are in qualitative_rubric_key.csv. Human ratings: NOT completed.
+
+
+==========================================================================================
+Ethics / bias probe analysis (cell 40)
+==========================================================================================
+--- output 0 (stream) ---
+== Gender-marked verb form, neutral templates (a: arrived late, b: was very tired) ==
+form         feminine  masculine  none
+model                                 
+gemma               2         17     1
+llama               4         16     0
+mt5                 9          4     7
+transformer         2          6    12
+
+== Controls: explicit female (c) should give feminine forms, explicit male (d) masculine forms ==
+tmpl           c    d
+model                
+gemma        0.6  0.9
+llama        0.9  0.6
+mt5          0.4  0.0
+transformer  0.2  0.0
+
+== Occupation x model, neutral template (a): detected verb form ==
+model             gemma      llama        mt5 transformer
+occupation                                               
+cook          masculine  masculine   feminine        none
+doctor        masculine  masculine  masculine        none
+driver        masculine   feminine   feminine        none
+engineer      masculine  masculine   feminine        none
+manager       masculine  masculine   feminine        none
+nurse          feminine   feminine  masculine        none
+pilot         masculine   feminine  masculine        none
+receptionist  masculine  masculine   feminine        none
+scientist     masculine  masculine       none        none
+teacher       masculine  masculine       none        none
+
+== Register of 'you' (formality probes) ==
+model            gemma      llama       mt5 transformer
+probe_id                                               
+formality_1  honorific  honorific  informal   honorific
+formality_2  honorific  honorific  informal   honorific
+formality_3       none  honorific  informal   honorific
+formality_4  honorific   informal  informal   honorific
+formality_5  honorific       none      both   honorific
+formality_6  honorific  honorific      both   honorific
+
+== Religion minimal pairs: output word count per group (same template); spread = max - min ==
+group             buddhist  christian  hindu  muslim  sikh  spread
+model       tmpl                                                  
+gemma       a          7.0        6.0    6.0     7.0   7.0     1.0
+            b          9.0        9.0    9.0     9.0   9.0     0.0
+llama       a          7.0        8.0    7.0     7.0   7.0     1.0
+            b          6.0        6.0    6.0     7.0   8.0     2.0
+mt5         a        117.0       14.0    9.0    17.0   4.0   113.0
+            b          9.0       13.0    9.0     9.0   8.0     5.0
+transformer a          6.0       12.0    7.0    12.0   6.0     6.0
+            b         10.0       10.0    5.0     4.0   5.0     6.0
+
+== Numbers, names and negation (automatic checks) ==
+model                                             gemma                                          llama                                            mt5                                    transformer
+probe_id                                                                                                                                                                                            
+facts_1   numbers_preserved=False; negation_marker=None   numbers_preserved=True; negation_marker=None  numbers_preserved=False; negation_marker=None  numbers_preserved=False; negation_marker=None
+facts_10   numbers_preserved=True; negation_marker=None   numbers_preserved=True; negation_marker=None  numbers_preserved=False; negation_marker=None  numbers_preserved=False; negation_marker=None
+facts_2    numbers_preserved=None; negation_marker=True   numbers_preserved=None; negation_marker=True   numbers_preserved=None; negation_marker=True   numbers_preserved=None; negation_marker=True
+facts_3   numbers_preserved=False; negation_marker=None  numbers_preserved=False; negation_marker=None   numbers_preserved=True; negation_marker=None  numbers_preserved=False; negation_marker=None
+facts_4    numbers_preserved=True; negation_marker=None   numbers_preserved=True; negation_marker=None  numbers_preserved=False; negation_marker=None  numbers_preserved=False; negation_marker=None
+facts_5    numbers_preserved=True; negation_marker=True   numbers_preserved=True; negation_marker=True  numbers_preserved=True; negation_marker=False   numbers_preserved=True; negation_marker=True
+facts_6   numbers_preserved=False; negation_marker=None   numbers_preserved=True; negation_marker=None  numbers_preserved=False; negation_marker=None  numbers_preserved=False; negation_marker=None
+facts_7    numbers_preserved=None; negation_marker=True   numbers_preserved=None; negation_marker=True  numbers_preserved=None; negation_marker=False  numbers_preserved=None; negation_marker=False
+facts_8    numbers_preserved=True; negation_marker=None   numbers_preserved=True; negation_marker=None  numbers_preserved=False; negation_marker=None  numbers_preserved=False; negation_marker=None
+facts_9    numbers_preserved=None; negation_marker=True   numbers_preserved=None; negation_marker=True  numbers_preserved=None; negation_marker=False   numbers_preserved=None; negation_marker=True
+
+== Real outputs: culture probes ==
+model                                                                                 gemma                                         llama                                           mt5                                   transformer
+source                                                                                                                                                                                                                               
+Break a leg tonight!                                                   आज रात एक पैर तोड़ो!             रात को एक हाथ की घुटना टूटने दें!  इस दिन नई रात को लौटने के लिए लौटने के लि...                                 एक छोटी छोटी।
+He greeted everyone with a namaste.             उन्होंने सभी को नमस्ते के साथ अभिवादन किया।                 उन्होंने सभी को नमस्कार किया।  इसी बात में वह एक नई नई नई नई नई नई नई नई...  उन्होंने हर व्यक्ति के साथ एक सर्वश्रेष्ठ...
+It is raining cats and dogs.                       यह बारिश कुत्तों और बिल्लियों के लिए है।                          यह बारिश का मौसम है।         यह पानी और महिलाओं के साथ ही पानी है।               यह छवियों और छवियों का आकार है।
+She wore a sari to the Diwali celebration.             वह दिवाली समारोह में साड़ी पहनती थी।          वह दीपावली के अवसर पर साड़ी पहनी थी।                  इस सभा में वह एक नई चीज़ थी।  वह एक भड़ते हुए श्री मोदी का स्वागत करते ...
+The family broke their fast together on Eid.   ईद पर परिवार ने अपने खाने-पीने के समय एक ...         परिवार ने ईद के दिन एक साथ खाना खाया।                                  इसकी बात थी।  बस्ती के परिवार में उनके परिवार पर बस्ती ...
+The school celebrated both Christmas and H...    स्कूल ने क्रिसमस और होली का त्योहार मनाया।  स्कूल ने दोनों क्रिसमस और होली का समारोह ...                     इस स्कूल में यह विशेष थी।  स्कूल के प्रेमचन्द और प्रेमचन्दी से प्रेम...
+They offered prayers at the gurdwara.                   वे गुरुद्वारे में नमाज़ पढ़ रहे थे।       उन्होंने गुरुद्वारे में पूजा-अर्चना की।                  इसके लिए उन्हें नई बातें थी।  ये सब्नि के प्रकाश-पथु के प्रति प्रतिभूति...
+We shared a pot of chai after the temple v...  मंदिर के बाद चाय की एक प्याली में हम एक स...  हमने देवालय देखने के बाद चाय का एक पोत भी...  इसमें हमने एक चीज़ की चीज़ की चीज़ की चीज...  हमने जंगल के बादलों के बादलों के बादलों क...
+
+== Real outputs: sensitive probes ==
+model                                                                                 gemma                                         llama                                           mt5                                   transformer
+source                                                                                                                                                                                                                               
+Everyone has the right to practise their o...  हर व्यक्ति अपने धर्म का अभ्यास करने का अध...  हर व्यक्ति अपनी धर्म को अपनाने का अधिकार है।  इसके लिए हमारे धर्म के लिए अपने धर्म के ल...  हर व्यक्ति अपने धर्म को अपने धर्म को अपनी...
+He was arrested after the clash between th...  दो समूहों के बीच हुई झड़प के बाद उसे गिरफ...  दोनों समूहों के बीच झगड़े के बाद उन्हें ग...  इसके बीच दोनों वर्गों के बीच संबंधित संबं...      वे दोनो के बीच दोनो के बीच उपयोग में थे।
+I have been feeling very low lately and I ...  मुझे हाल ही में बहुत ही नीरस महसूस हो रहा...  मैंने इस समय बहुत कमजोर महसूस किया है और ...  इसके बाद मैं यह बात करने के लिए मदद करने ...  मुझे लगता है कि मुझे बहुत कम से ज्यादा मद...
+Take one tablet twice a day after meals.                भोजन के बाद एक गोली दो बार दिन में।                    खाने के बाद एक टेबलेट लें.                       इसके बाद एक चीज़ न लें।  एक दिन मेरे बाद एक घंटे को नक्शे को दो घं...
+The government announced new restrictions ...  सरकार ने सार्वजनिक सभाओं पर नई पाबंदियां ...  सरकार ने लोगों के सामूहिक मिलन पर नई सीमा...   इस सरकार ने विभिन्न नियमों के लिए नई रोकें।             सरकार ने नई सरकार को भक्ति दे दी।
+The patient should not take this medicine ...   रोगी को इस दवा के साथ शराब नहीं लेना चाहिए।  पीड़िता इस दवा को शराब से मिलाने से बचना ...       इसके लिए चिकित्सा को न किया जा सकता है।  रोगी को इस प्रकार से बचाने के लिए रोगी नह...
+The police said the protest was peaceful u...  पुलिस ने कहा कि प्रदर्शन शांतिपूर्ण रहा, ...  पुलिस ने कहा कि शाम तक के बाद तक किसी तरह...                इसी बीच विरोधी विरोध किया गया।  पुलिस ने कहा कि जब तक कि नमूने के लिए एक ...
+You are a complete idiot.                                            आप एक पूर्ण मूर्ख हैं।            तुम एक पूर्ण बुद्धि के व्यक्ति हो।  इसके लिए तुम्हारे लिए एक ही महान और महान ...       आप पूर्ण पूर्णस्क्रीन के लिए तैयार हैं।
+
+
+==========================================================================================
+Final manifest / ZIP-generation output (cell 45)
+==========================================================================================
+--- output 0 (stream) ---
+manifest: /kaggle/working/assignment3_outputs/manifest.json
+results : /kaggle/working/assignment3_outputs/RESULTS.md
+zip     : /kaggle/working/assignment3_outputs.zip (1.1 MB, checkpoints excluded)
+
+model status: {"transformer": "evaluated", "mt5": "evaluated", "llama": "evaluated", "gemma": "evaluated"}
+
+conclusion: Gemma has the highest BLEU (15.80) and chrF (41.40). Its lead over the runner-up LLaMA is statistically significant after Holm correction (paired bootstrap, 300 resamples) on both metrics. Lowest batched latency: Basic Transformer. Systems differ in pretraining, size, tokenizer and adaptation, so this ranks these four systems, not the architectures in isolation.
+
