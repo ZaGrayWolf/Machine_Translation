@@ -54,7 +54,7 @@ No system was only prompted; all four were trained or fine-tuned. LLaMA and Gemm
 **Dependencies:** `requirements.txt` (the reported run used Python 3.13, PyTorch 2.11.0 with CUDA 12.8, Transformers 5.16.1, PEFT 0.20.0, sacreBLEU 2.6.0, SentencePiece 0.2.2).
 
 **Run on Kaggle** (full instructions in [`KAGGLE_EXECUTION_GUIDE.md`](KAGGLE_EXECUTION_GUIDE.md)):
-1. Import `ict4403_assignment3_machine_translation.ipynb`; set the accelerator to a GPU (T4) and Internet to On.
+1. Import `ict4403-foundations-of-generative-ai-assignment-3 _.ipynb`; set the accelerator to a GPU (T4) and Internet to On.
 2. Accept the licences for Llama 3.2 and Gemma on Hugging Face, create a read token and store it as the Kaggle Secret `HF_TOKEN` (never hard-code it).
 3. Set `PROFILE` in the configuration cell (`smoke` to test access, `session` for the reported setup) and run all cells.
 4. Download `assignment3_outputs.zip` (results, translations, plots, manifest; checkpoints excluded).
@@ -77,7 +77,7 @@ The reported run used the `session` profile with these overrides for memory and 
 Training time is the wall-clock of the training loop including its validation passes. Differences in size, pretraining, tokenizer, adaptation method and precision between the systems are deliberate and are reported, not hidden.
 
 ## Results
-All numbers come from the executed notebook (`ict4403_assignment3_machine_translation.ipynb`, outputs included).
+All numbers come from the executed notebook (`ict4403-foundations-of-generative-ai-assignment-3 _.ipynb`, outputs included).
 
 ### Translation quality (same 500 test sentences, greedy decoding)
 | System | BLEU (95% CI) | chrF (95% CI) | Length ratio | Numbers kept | Empty outputs |
@@ -89,8 +89,8 @@ All numbers come from the executed notebook (`ict4403_assignment3_machine_transl
 
 "Numbers kept" is the share of source sentences containing numbers whose numbers all appear in the output. Every pairwise difference is significant after Holm correction (no bootstrap resample reversed any pair, so p < 0.004). The scores are low in absolute terms because of the small 20,000-pair subset and the newswire test domain; for calibration only, the corpus paper reports 12.23 BLEU for an RNN system trained on the full 1.49M-pair corpus with a different tokenisation (not directly comparable).
 
-![BLEU](assignment3_outputs/plots/bleu_comparison.png)
-![chrF](assignment3_outputs/plots/chrf_comparison.png)
+![BLEU](plots/04_bleu_scores_bootstrap_ci.png)
+![chrF](plots/05_chrf_scores_bootstrap_ci.png)
 
 ### Training time, parameters and inference time (Tesla T4)
 | System | Training time | Batched inference (batch 4) | Sentences per second | Batch-one latency (mean, n=5) |
@@ -102,10 +102,10 @@ All numbers come from the executed notebook (`ict4403_assignment3_machine_transl
 
 Total and trainable parameter counts are in the table under [Models and adaptation](#models-and-adaptation). The Transformer decodes with its own loop without a key-value cache, and Gemma ran in fp32 while LLaMA ran in fp16, so inference times are not a pure architecture comparison.
 
-![Parameters](assignment3_outputs/plots/parameter_counts.png)
-![Time](assignment3_outputs/plots/training_time.png)
-![Latency](assignment3_outputs/plots/inference_latency_throughput.png)
-![Loss curves](assignment3_outputs/plots/loss_curves.png)
+![Parameters](plots/07_parameter_counts.png)
+![Time](plots/03_training_time.png)
+![Latency](plots/06_inference_latency_throughput.png)
+![Loss curves](plots/02_training_loss_curves.png)
 
 ## Model comparison and architecture trade-offs
 The decoder-only models clearly outperform the encoder-decoder models here, but the experiment cannot attribute that gap to architecture, because the systems differ in several ways at once:
@@ -139,7 +139,7 @@ Supplementary to the greedy comparison. Each system translated a fixed 24-senten
 - Repetition drops with temperature (greedy mT5 repetition of 3-word sequences 0.316, 0 at T = 1.0), but at the cost of adequacy.
 - On the few sentences with numbers, number preservation was 0 for every model at T >= 1.0, so higher temperature raises the risk of changed facts. Higher diversity is not a goal in translation.
 
-![Temperature analysis](assignment3_outputs/plots/temperature_analysis.png)
+![Temperature analysis](plots/09_temperature_analysis.png)
 
 ## Qualitative examples and responsible AI
 Examples were selected automatically from the 500 test outputs by transparent rules and read by me; this is an **example-based inspection, not a completed human evaluation** (a blinded rubric template was generated; no human ratings were collected). The full set with Hindi text is in the report and in the notebook output.
@@ -179,20 +179,18 @@ On the recorded evidence **Gemma (`gemma-3-1b-pt` with LoRA) is the best-perform
 
 ## Repository layout
 ```
-ICT4403-Machine-Translation-Assignment3/
+Machine_Translation/
 ├── README.md
 ├── KAGGLE_EXECUTION_GUIDE.md
 ├── requirements.txt
 ├── .gitignore
-├── ict4403_assignment3_machine_translation.ipynb   # executed notebook with outputs
-├── assignment3_outputs/
-│   ├── README.md
-│   ├── plots/                                      # figures from the executed run
-│   └── notebook_extracted/                         # tables and text transcribed from the notebook output
-├── docs/                                           # PLAN.md, IMPLEMENTATION_BLUEPRINT.md
-└── validation/LOCAL_VALIDATION.md                  # code validation on synthetic data
+├── ict4403-foundations-of-generative-ai-assignment-3 _.ipynb   # executed notebook with outputs
+├── plots/      # figures from the executed run (README images)
+├── tables/     # CSV transcriptions of the tables printed in the notebook
+└── reports/    # RESULTS.md and the full saved text of the notebook output
 ```
-The original Kaggle result files (translation and probe CSVs, `manifest.json`) were not available when this README was written. `assignment3_outputs/notebook_extracted/` holds **transcriptions** of the tables printed in the executed notebook plus its full saved text, not the original CSVs. If you still have the Kaggle `assignment3_outputs.zip`, add its `config/`, `results/`, `translations/` and `logs/` (not `checkpoints/`) to `assignment3_outputs/`.
+
+The original Kaggle result files (translation and probe CSVs, `manifest.json`) were not available when this README was written. `tables/` and `reports/` hold **transcriptions** of the tables printed in the executed notebook plus its full saved text, not the original CSVs. If you still have the Kaggle `assignment3_outputs.zip`, add its `results/` and `translations/` folders to the repository.
 
 ## Licences and attribution
 - **Data:** IITB English-Hindi corpus, non-commercial research use only (see [Dataset](#dataset)); not redistributed here.
