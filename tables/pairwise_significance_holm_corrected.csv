@@ -1,0 +1,13 @@
+﻿metric,model_a,model_b,delta_a_minus_b,p_raw_displayed,p_holm_displayed,significant_at_0_05
+bleu,transformer,mt5,1.414649,0.0,0.0,True
+bleu,transformer,llama,-8.229391,0.0,0.0,True
+bleu,transformer,gemma,-13.70919,0.0,0.0,True
+bleu,mt5,llama,-9.644041,0.0,0.0,True
+bleu,mt5,gemma,-15.123839,0.0,0.0,True
+bleu,llama,gemma,-5.479799,0.0,0.0,True
+chrf,transformer,mt5,6.079457,0.0,0.0,True
+chrf,transformer,llama,-15.958864,0.0,0.0,True
+chrf,transformer,gemma,-23.016605,0.0,0.0,True
+chrf,mt5,llama,-22.038321,0.0,0.0,True
+chrf,mt5,gemma,-29.096062,0.0,0.0,True
+chrf,llama,gemma,-7.057741,0.0,0.0,True

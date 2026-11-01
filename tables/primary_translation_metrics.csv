@@ -1,0 +1,5 @@
+﻿model,n_test,bleu,bleu_ci_low,bleu_ci_high,chrf,chrf_ci_low,chrf_ci_high,length_ratio,empty_rate,off_target_rate,number_preservation
+Basic Transformer,500,2.09,1.64,2.5,18.38,17.8,18.95,1.01,0.0,0.0,0.12
+mT5,500,0.68,0.51,0.87,12.31,11.8,12.82,1.86,0.0,0.0,0.14
+LLaMA,500,10.32,9.18,11.62,34.34,33.09,35.41,1.07,0.0,0.0,0.89
+Gemma,500,15.8,14.72,16.92,41.4,40.34,42.43,0.96,0.0,0.0,0.97
